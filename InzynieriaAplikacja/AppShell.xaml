@@ -10,7 +10,7 @@
                   ContentTemplate="{DataTemplate local:LoginView}"
                   Route="Login" />
 
-    <ShellContent Title="Main"
+    <ShellContent 
                   ContentTemplate="{DataTemplate local:MainView}"
                   Route="Main" />
 
