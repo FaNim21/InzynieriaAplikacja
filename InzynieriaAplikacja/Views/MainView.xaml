@@ -15,4 +15,4 @@
                 VerticalOptions="Center"
                 Command="{Binding SignOutCommand}"/>
     </VerticalStackLayout>
-</ContentPage>
+</ContentPage> 
