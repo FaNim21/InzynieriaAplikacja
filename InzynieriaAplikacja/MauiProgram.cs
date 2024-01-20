@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Maui;
+using InzynieriaAplikacja.ViewModels;
+using InzynieriaAplikacja.Views;
+using Microsoft.Extensions.Logging;
 
 namespace InzynieriaAplikacja;
 
@@ -9,6 +12,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -19,6 +23,14 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
+        builder.Services.AddSingleton<MainView>();
+        builder.Services.AddSingleton<MainViewModel>();
+
+        builder.Services.AddSingleton<LoginView>();
+        builder.Services.AddSingleton<LoginPageViewModel>();
+
         return builder.Build();
     }
+
+    //HRT60TQ2nOMfxrX0
 }
