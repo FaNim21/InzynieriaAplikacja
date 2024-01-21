@@ -3,6 +3,7 @@ using InzynieriaAplikacja.Context;
 using InzynieriaAplikacja.ViewModels;
 using InzynieriaAplikacja.ViewModels.Administrator;
 using InzynieriaAplikacja.Views;
+using InzynieriaAplikacja.Views.AdminViews;
 using Microsoft.Extensions.Logging;
 
 namespace InzynieriaAplikacja;
@@ -38,6 +39,9 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<TrainingView>();
         builder.Services.AddSingleton<TrainingViewModel>();
+
+        builder.Services.AddSingleton<AdminControlUserView>();
+        builder.Services.AddSingleton<AdminControlUserViewModel>();
 
         return builder.Build();
     }

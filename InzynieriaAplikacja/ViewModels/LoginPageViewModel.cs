@@ -40,11 +40,8 @@ public partial class LoginPageViewModel : BaseViewModel
     public async Task CreateAccount()
     {
         IsBusy = true;
-        //await Application.Current!.MainPage!.DisplayAlert("no siema", "nie jest zaimplementowane", "Dobra");
         try
         {
-            //Application.Current!.MainPage!.DisplayAlert("no i zepsoles", $"{AppConfig.DatabasePath}", "no dobra");
-
             var users = await App.Database.GetUsers();
             foreach (var user in users)
             {
@@ -81,8 +78,6 @@ public partial class LoginPageViewModel : BaseViewModel
         {
             await Application.Current!.MainPage!.DisplayAlert("no i zepsoles", $"blad w logowaniu {ex.Message}", "no dobra");
         }
-        //await Application.Current!.MainPage!.DisplayAlert("no siema", "nie jest zaimplementowane", "Dobra");
-        //await Shell.Current.GoToAsync("///Main");
         IsBusy = false;
     }
 }

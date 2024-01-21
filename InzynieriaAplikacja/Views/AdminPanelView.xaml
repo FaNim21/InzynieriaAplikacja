@@ -5,11 +5,20 @@
              xmlns:viewmodel="clr-namespace:InzynieriaAplikacja.ViewModels.Administrator"
              xmlns:models="clr-namespace:InzynieriaAplikacja.Models"
              x:DataType="viewmodel:AdminPanelViewModel"
-             Title="AdminPanelView">
+             Title="">
     <VerticalStackLayout>
         <Label Text="WITAMY W PANELU ADMINA"
+               FontSize="28"
                VerticalOptions="Center"
                HorizontalOptions="Center" />
+
+        <Button Text="Użytkownicy"
+                WidthRequest="120"
+                HeightRequest="60"
+                VerticalOptions="End"
+                BackgroundColor="#b23b3b"
+                Margin="15"
+                Command="{Binding OpenUserControlCommand}" />
 
         <Button Text="Wyloguj"
                 WidthRequest="100"
@@ -18,46 +27,5 @@
                 BackgroundColor="#b23b3b"
                 Margin="15"
                 Command="{Binding SignOutCommand}" />
-
-        <CollectionView ItemsSource="{Binding Users}">
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical"
-                                   ItemSpacing="10" />
-            </CollectionView.ItemsLayout>
-
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:User">
-                    <Grid Padding="10"
-                          BackgroundColor="#2196F3">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-
-                        <Label Text="{Binding Email}"
-                               FontSize="18"
-                               TextColor="White"
-                               Grid.Row="0" />
-                        <Label Text="{Binding Password}"
-                               FontSize="14"
-                               TextColor="White"
-                               Grid.Row="1" />
-
-                        <!-- Buttons for Edit and Delete -->
-                        <StackLayout Orientation="Horizontal"
-                                     Grid.Row="2">
-                            <Button Text="Edit"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AdminPanelViewModel}}, Path=EditCommand}"
-                                    CommandParameter="{Binding .}" />
-                            <Button Text="Delete"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AdminPanelViewModel}}, Path=DeleteCommand}"
-                                    CommandParameter="{Binding .}" />
-                        </StackLayout>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-
     </VerticalStackLayout>
 </ContentPage>

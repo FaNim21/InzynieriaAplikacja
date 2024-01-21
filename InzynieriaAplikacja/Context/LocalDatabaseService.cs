@@ -1,7 +1,5 @@
 ﻿using InzynieriaAplikacja.Models;
 using SQLite;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
 
 namespace InzynieriaAplikacja.Context;
 
@@ -16,22 +14,8 @@ public class LocalDatabaseService
 
         _connection = new SQLiteAsyncConnection(AppConfig.DatabasePath, AppConfig.Flags);
         _connection.CreateTableAsync<User>();
-        /*var trainings = _connection.CreateTableAsync<Training>();
-        var meals = _connection.CreateTableAsync<Meal>();*/
-    }
-
-    /*public async Task Init()
-    {
-        if (_connection is not null) return;
-
-        _connection = new SQLiteAsyncConnection(AppConfig.DatabasePath, AppConfig.Flags);
-        var users = await _connection.CreateTableAsync<User>();
-        var trainings = await _connection.CreateTableAsync<Training>();
-        var meals = await _connection.CreateTableAsync<Meal>();
-    }*/
-
-    public async Task ClearDataBase()
-    {
+        _connection.CreateTableAsync<Training>();
+        _connection.CreateTableAsync<Meal>();
     }
 
     #region Users

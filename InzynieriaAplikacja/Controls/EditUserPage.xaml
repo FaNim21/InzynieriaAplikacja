@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InzynieriaAplikacja.Controls.EditUserPage"
+             xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             Title="EditUserPopupPage">
+    <StackLayout>
+        <Label Text="E-mail:" />
+        <Entry x:Name="EmailEntry" />
+
+        <Label Text="Hasło:" />
+        <Entry x:Name="PasswordEntry" />
+
+        <Label Text="Imię:" />
+        <Entry x:Name="ImieEntry" />
+
+        <Label Text="Nazwisko:" />
+        <Entry x:Name="NazwiskoEntry" />
+
+        <Label Text="Waga:" />
+        <Entry x:Name="WagaEntry" />
+
+        <Label Text="Wzrost:" />
+        <Entry x:Name="WzrostEntry" />
+
+        <Button Text="Save"
+                Clicked="SaveButton_Clicked" />
+    </StackLayout>
+</ContentPage>

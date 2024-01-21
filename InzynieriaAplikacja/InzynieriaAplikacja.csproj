@@ -66,16 +66,25 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Controls\EditUserPage.xaml.cs">
+	    <DependentUpon>EditUserPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Controls\Flyout.xaml.cs">
 	    <DependentUpon>Flyout.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Controls\EditUserPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Controls\Flyout.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\AdminPanelView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AdminViews\AdminControlUserView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\LoginView.xaml">

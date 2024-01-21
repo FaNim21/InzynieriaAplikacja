@@ -1,13 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CommunityToolkit.Mvvm.Input;
 
-namespace InzynieriaAplikacja.ViewModels
+namespace InzynieriaAplikacja.ViewModels;
+
+public partial class TrainingViewModel: BaseViewModel
 {
-    public partial class TrainingViewModel: BaseViewModel
+
+    public TrainingViewModel()
     {
         
+    }
+
+    [RelayCommand]
+    public async Task GoBack()
+    {
+        IsBusy = true;
+        try
+        {
+            await Shell.Current.GoToAsync("///Main");
+        }
+        catch (Exception ex)
+        {
+            await Application.Current!.MainPage!.DisplayAlert("no i zepsoles", $"blad w wylogowywaniu {ex.Message}", "no dobra");
+        }
+        IsBusy = false;
     }
 }
