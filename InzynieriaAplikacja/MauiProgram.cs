@@ -36,6 +36,9 @@ public static class MauiProgram
         builder.Services.AddSingleton<AdminPanelViewModel>();
         builder.Services.AddSingleton<AdminPanelView>();
 
+        builder.Services.AddSingleton<TrainingView>();
+        builder.Services.AddSingleton<TrainingViewModel>();
+
         return builder.Build();
     }
 }

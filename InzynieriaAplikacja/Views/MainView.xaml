@@ -5,8 +5,16 @@
              xmlns:vm="clr-namespace:InzynieriaAplikacja.ViewModels"
              xmlns:models="clr-namespace:InzynieriaAplikacja.Models"
              x:DataType="vm:MainViewModel">
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="1.5,2" EndPoint="0,2">
+            <GradientStop Color="#660a0a" Offset="0.0"/>
+            <GradientStop Color="#280645" Offset="1.0"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition />
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
@@ -20,28 +28,30 @@
                    HorizontalTextAlignment="Center"
                    VerticalTextAlignment="Center"
                    Margin="10" />
-            <ListView ItemsSource="{Binding Trainings}" Background="Aqua">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="models:Training">
-                        <TextCell Text="{Binding Name}" TextColor="Black"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
         </StackLayout>
-        <StackLayout Grid.Row="1" Margin="10">
-            <Button Text="Dodaj"
-                    WidthRequest="100"
-                    HeightRequest="60"
-                    VerticalOptions="Center"
-                    BackgroundColor="Aquamarine"
-                    Command="{Binding AddTrainingCommand}" />
-            <Button Text="Usun Ostatni"
-                    WidthRequest="100"
-                    HeightRequest="60"
-                    VerticalOptions="Center"
-                    BackgroundColor="Aquamarine"
-                    Command="{Binding DeleteTrainingCommand}" />
+        
+        <StackLayout Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center">
+            <Label Text="{Binding CurrentStep}"
+                   TextColor="Aquamarine"
+                   FontSize="30"
+                   FontFamily="Times New Roman"
+                   HorizontalTextAlignment="Center">
+                
+            </Label>
+            <ProgressBar WidthRequest="100" HeightRequest="100" 
+                     Progress="{Binding Step}"/>
+            <Button Text="Wykonaj krok" Command="{Binding MakeStepCommand}"/>
         </StackLayout>
+
+        <Button Text="Treningi"
+                WidthRequest="100"
+                HeightRequest="60"
+                VerticalOptions="End"
+                BackgroundColor="Black"
+                Margin="15"
+                Command="{Binding GoToTrainingCommand}"
+                Grid.Row="2"/>
+
         <Button Text="Wyloguj"
                 WidthRequest="100"
                 HeightRequest="60"
@@ -49,6 +59,6 @@
                 BackgroundColor="#b23b3b"
                 Margin="15"
                 Command="{Binding SignOutCommand}"
-                Grid.Row="2" />
+                Grid.Row="3" />
     </Grid>
 </ContentPage>

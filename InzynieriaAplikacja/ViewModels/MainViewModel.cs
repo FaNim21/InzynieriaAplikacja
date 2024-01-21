@@ -10,6 +10,14 @@ public partial class MainViewModel : BaseViewModel
     [ObservableProperty]
     private ObservableCollection<Training>? trainings;
 
+    [ObservableProperty]
+    private float step;
+
+    [ObservableProperty]
+    private int currentStep;
+
+    private int maxStep=100;
+
 
     public MainViewModel()
     {
@@ -58,6 +66,28 @@ public partial class MainViewModel : BaseViewModel
         Training lastTraining = Trainings.LastOrDefault()!;
         Trainings.Remove(lastTraining);
 
+        IsBusy = false;
+    }
+
+    [RelayCommand]
+    public void MakeStep()
+    {
+        CurrentStep++;
+        Step = (float) CurrentStep / maxStep;
+    }
+
+    [RelayCommand]
+    public async Task GoToTraining()
+    {
+        IsBusy = true;
+        try
+        {
+            await Shell.Current.GoToAsync("///Training");
+        }
+        catch (Exception ex)
+        {
+            await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+        }
         IsBusy = false;
     }
 }
