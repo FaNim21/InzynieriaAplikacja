@@ -1,23 +1,24 @@
-﻿using MongoDB.Bson;
-using Realms;
+﻿using SQLite;
 
 namespace InzynieriaAplikacja.Models;
 
-public class Training : RealmObject
+[Table("training")]
+public class Training
 {
     [PrimaryKey]
-    [MapTo("_id")]
-    public ObjectId Id { get; set; } = ObjectId.GenerateNewId();
+    [AutoIncrement]
+    [Column("id")]
+    public int Id { get; set; }
 
-    [MapTo("_name")]
+    [Column("name")]
     public string Name { get; set; }
 
-    [MapTo("_time")]
+    [Column("time")]
     public string Time { get; set; }
 
-    [MapTo("_spalone_kalorie")]
+    [Column("spalone_kalorie")]
     public float SpaloneKalorie { get; set; }
 
-    [MapTo("_czwiecznia")]
+    [Column("cwiczenia")]
     public string Cwiczenia { get; set; }
 }

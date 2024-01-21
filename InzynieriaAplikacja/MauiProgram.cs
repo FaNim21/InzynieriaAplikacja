@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Maui;
+using InzynieriaAplikacja.Context;
 using InzynieriaAplikacja.ViewModels;
+using InzynieriaAplikacja.ViewModels.Administrator;
 using InzynieriaAplikacja.Views;
 using Microsoft.Extensions.Logging;
 
@@ -23,17 +25,17 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
+        builder.Services.AddSingleton<LocalDatabaseService>();
+
         builder.Services.AddSingleton<MainView>();
         builder.Services.AddSingleton<MainViewModel>();
 
         builder.Services.AddSingleton<LoginView>();
         builder.Services.AddSingleton<LoginPageViewModel>();
 
+        builder.Services.AddSingleton<AdminPanelViewModel>();
+        builder.Services.AddSingleton<AdminPanelView>();
+
         return builder.Build();
     }
-
-    //HRT60TQ2nOMfxrX0
-    //sznsmcvviwGaHILc
-    //eI8c8jBqmzOOtIWY
-    //onbhtr7Ryna7TPex
 }

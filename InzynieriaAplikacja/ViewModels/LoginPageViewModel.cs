@@ -1,65 +1,88 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Realms.Sync;
+using InzynieriaAplikacja.Models;
+using System.Diagnostics;
 
 namespace InzynieriaAplikacja.ViewModels;
 
 public partial class LoginPageViewModel : BaseViewModel
 {
     [ObservableProperty]
-    string emailText;
+    private string emailText;
 
     [ObservableProperty]
-    string passwordText;
+    private string passwordText;
 
 
     public LoginPageViewModel()
     {
         emailText = "asdasd@wp.pl";
         passwordText = "1432432a";
+
+        Task.Run(CreateAdmin);
     }
 
-    public static async void StartDashboard()
+    private async Task CreateAdmin()
+    {
+        try
+        {
+            await App.Database.CreateUser(new User() { Email = "admin", Password = "admin", Administrator = true });
+        }
+        catch { }
+    }
+
+    public static async Task StartDashboard()
     {
         await Shell.Current.GoToAsync("///Main");
     }
 
     [RelayCommand]
-    async void CreateAccount()
+    public async Task CreateAccount()
     {
+        IsBusy = true;
+        //await Application.Current!.MainPage!.DisplayAlert("no siema", "nie jest zaimplementowane", "Dobra");
         try
         {
-            await App.RealmApp.EmailPasswordAuth.RegisterUserAsync(EmailText, PasswordText);
-            await Login();
+            //Application.Current!.MainPage!.DisplayAlert("no i zepsoles", $"{AppConfig.DatabasePath}", "no dobra");
+
+            var users = await App.Database.GetUsers();
+            foreach (var user in users)
+            {
+                Trace.Write(user.Email);
+            }
+
+            await App.Database.CreateUser(new User() { Email = EmailText, Password = PasswordText });
         }
         catch (Exception ex)
         {
-            await Application.Current.MainPage.DisplayAlert("Error creating account!", "Error: " + ex.Message, "OK");
+            await Application.Current!.MainPage!.DisplayAlert("no i zepsoles", $"blad w resjestrowaniu {ex.Message}", "no dobra");
         }
+        IsBusy = false;
     }
 
     [RelayCommand]
     public async Task Login()
     {
+        IsBusy = true;
         try
         {
-            var user = await App.RealmApp.LogInAsync(Credentials.EmailPassword(EmailText, PasswordText));
+            var user = await App.Database.LoginUser(EmailText, PasswordText);
 
-            if (user != null)
+            if (user.Administrator)
             {
-                await Shell.Current.GoToAsync("///Main");
-                EmailText = "";
-                PasswordText = "";
+                await Shell.Current.GoToAsync("///Admin");
             }
             else
             {
-                throw new Exception();
+                await Shell.Current.GoToAsync("///Main");
             }
-
         }
         catch (Exception ex)
         {
-            await Application.Current.MainPage.DisplayAlert("Error Logging In", ex.Message, "OK");
+            await Application.Current!.MainPage!.DisplayAlert("no i zepsoles", $"blad w logowaniu {ex.Message}", "no dobra");
         }
+        //await Application.Current!.MainPage!.DisplayAlert("no siema", "nie jest zaimplementowane", "Dobra");
+        //await Shell.Current.GoToAsync("///Main");
+        IsBusy = false;
     }
 }

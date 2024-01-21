@@ -9,4 +9,15 @@ public partial class BaseViewModel : ObservableObject
     bool isBusy;
 
     public bool IsNotBusy => !IsBusy;
+
+
+    public virtual void OnAppearing()
+    {
+
+    }
+
+    public virtual void OnDisappearing()
+    {
+
+    }
 }

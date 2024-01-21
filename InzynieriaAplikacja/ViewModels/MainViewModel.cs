@@ -1,20 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using InzynieriaAplikacja.Models;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using Realms;
-using Realms.Sync;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 
 namespace InzynieriaAplikacja.ViewModels;
 
 public partial class MainViewModel : BaseViewModel
 {
-    public Realm Realm { get; set; }
-    public FlexibleSyncConfiguration? Sync { get; set; }
-
     [ObservableProperty]
     private ObservableCollection<Training>? trainings;
 
@@ -22,18 +14,6 @@ public partial class MainViewModel : BaseViewModel
     public MainViewModel()
     {
         Trainings = [];
-        /*var config = new RealmConfiguration(); // Default configuration
-        Realm.DeleteRealm(config); // Delete the Realm file
-        Realm = Realm.GetInstance(config); // Recreate the Realm*/
-
-        Realm = Realm.GetInstance();
-
-        var _trainings = Realm.All<Training>();
-        foreach (Training training in _trainings)
-        {
-            Trainings.Add(training);
-            //Trace.WriteLine($"{training.Name}");
-        }
     }
 
     [RelayCommand]
@@ -42,66 +22,42 @@ public partial class MainViewModel : BaseViewModel
         IsBusy = true;
         try
         {
-            var currentuserId = App.RealmApp.CurrentUser.Id;
-            await App.RealmApp.RemoveUserAsync(App.RealmApp.CurrentUser);
-            var noMoreCurrentUser = App.RealmApp.AllUsers.FirstOrDefault(u => u.Id == currentuserId);
+            //await App.Database.
             await Shell.Current.GoToAsync("///Login");
         }
         catch (Exception ex)
         {
-            await Application.Current.MainPage.DisplayPromptAsync("Error", ex.Message);
+            await Application.Current!.MainPage!.DisplayAlert("no i zepsoles", $"blad w wylogowywaniu {ex.Message}", "no dobra");
         }
         IsBusy = false;
     }
 
-
     [RelayCommand]
-    public async Task AddTraining()
+    public void AddTraining()
     {
         IsBusy = true;
-        try
+
+        var todo = new Training
         {
-            Realm.Write(() =>
-            {
-                var todo = new Training
-                {
-                    Name = "asdasd123123213",
-                    Time = DateTime.UtcNow.ToString(),
-                    SpaloneKalorie = 1000,
-                    Cwiczenia = "eloo"
-                };
-                Realm.Add(todo);
-                Trainings!.Add(todo);
-            });
-        }
-        catch (Exception ex)
-        {
-            await Application.Current!.MainPage!.DisplayPromptAsync("Error", ex.Message);
-        }
+            Name = "asdasd123123213",
+            Time = DateTime.UtcNow.ToString(),
+            SpaloneKalorie = 1000,
+            Cwiczenia = "eloo"
+        };
+        Trainings!.Add(todo);
+
         IsBusy = false;
     }
 
     [RelayCommand]
-    public async Task DeleteTraining()
+    public void DeleteTraining()
     {
         if (Trainings == null) return;
-
         IsBusy = true;
-        try
-        {
-            Training lastTraining = Trainings.LastOrDefault()!;
 
-            Realm.Write(() =>
-            {
-                Realm.Remove(lastTraining);
-            });
+        Training lastTraining = Trainings.LastOrDefault()!;
+        Trainings.Remove(lastTraining);
 
-            Trainings.Remove(lastTraining);
-        }
-        catch (Exception ex)
-        {
-            await Application.Current!.MainPage!.DisplayPromptAsync("Error", ex.Message);
-        }
         IsBusy = false;
     }
 }

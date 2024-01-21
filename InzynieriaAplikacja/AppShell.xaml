@@ -10,7 +10,10 @@
                   ContentTemplate="{DataTemplate local:LoginView}"
                   Route="Login" />
 
-    <ShellContent 
-                  ContentTemplate="{DataTemplate local:MainView}"
+    <ShellContent ContentTemplate="{DataTemplate local:MainView}"
                   Route="Main" />
+
+    <ShellContent Title="AdminPage"
+                  ContentTemplate="{DataTemplate local:AdminPanelView}"
+                  Route="Admin" />
 </Shell>
