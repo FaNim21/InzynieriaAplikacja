@@ -13,4 +13,8 @@
     <ShellContent 
                   ContentTemplate="{DataTemplate local:MainView}"
                   Route="Main" />
+
+    <ShellContent Title="Training"
+                  ContentTemplate="{DataTemplate local:TrainingView}"
+                  Route="Training"/>
 </Shell>

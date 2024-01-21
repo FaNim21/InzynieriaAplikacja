@@ -29,6 +29,9 @@ public static class MauiProgram
         builder.Services.AddSingleton<LoginView>();
         builder.Services.AddSingleton<LoginPageViewModel>();
 
+        builder.Services.AddSingleton<TrainingView>();
+        builder.Services.AddSingleton<TrainingViewModel>();
+
         return builder.Build();
     }
 
