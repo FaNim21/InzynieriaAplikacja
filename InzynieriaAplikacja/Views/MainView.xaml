@@ -28,13 +28,7 @@
                 </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
-        <StackLayout Grid.Row="1">
-            <Button Text="Wypisz"
-                    WidthRequest="100"
-                    HeightRequest="60"
-                    VerticalOptions="Center"
-                    BackgroundColor="Aquamarine"
-                    Command="{Binding GetTrainingCommand}" />
+        <StackLayout Grid.Row="1" Margin="10">
             <Button Text="Dodaj"
                     WidthRequest="100"
                     HeightRequest="60"

@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using InzynieriaAplikacja.Models;
 using MongoDB.Bson;
+using MongoDB.Driver;
 using Realms;
 using Realms.Sync;
 using System.Collections.ObjectModel;
@@ -15,16 +16,24 @@ public partial class MainViewModel : BaseViewModel
     public FlexibleSyncConfiguration? Sync { get; set; }
 
     [ObservableProperty]
-    private ObservableCollection<Training> trainings = new();
+    private ObservableCollection<Training>? trainings;
 
 
     public MainViewModel()
     {
+        Trainings = [];
         /*var config = new RealmConfiguration(); // Default configuration
         Realm.DeleteRealm(config); // Delete the Realm file
         Realm = Realm.GetInstance(config); // Recreate the Realm*/
 
         Realm = Realm.GetInstance();
+
+        var _trainings = Realm.All<Training>();
+        foreach (Training training in _trainings)
+        {
+            Trainings.Add(training);
+            //Trace.WriteLine($"{training.Name}");
+        }
     }
 
     [RelayCommand]
@@ -45,35 +54,6 @@ public partial class MainViewModel : BaseViewModel
         IsBusy = false;
     }
 
-    [RelayCommand]
-    public async Task GetTraining()
-    {
-        IsBusy = true;
-        /*Sync = new FlexibleSyncConfiguration(App.RealmApp.CurrentUser!)
-        {
-            PopulateInitialSubscriptions = (realm) =>
-            {
-                var myItems = realm.All<Training>();
-                realm.Subscriptions.Add(myItems);
-            }
-        };
-        Trace.WriteLine(Sync.PopulateInitialSubscriptions.ToString());
-        Realm = await Realm.GetInstanceAsync(Sync);
-        Trace.WriteLine("asdasd");*/
-
-        trainings.Clear();
-        var _trainings = Realm.All<Training>();
-        foreach (Training training in _trainings)
-        {
-            trainings.Add(training); 
-            //Trace.WriteLine($"{training.Name}");
-        }
-
-        Trace.WriteLine(trainings.Count);
-
-        //await Application.Current.MainPage.DisplayAlert(Realm.All<Training>().ToString(), "", "OK");
-        IsBusy = false;
-    }
 
     [RelayCommand]
     public async Task AddTraining()
@@ -91,33 +71,36 @@ public partial class MainViewModel : BaseViewModel
                     Cwiczenia = "eloo"
                 };
                 Realm.Add(todo);
+                Trainings!.Add(todo);
             });
         }
         catch (Exception ex)
         {
-            await Application.Current.MainPage.DisplayPromptAsync("Error", ex.Message);
+            await Application.Current!.MainPage!.DisplayPromptAsync("Error", ex.Message);
         }
         IsBusy = false;
     }
 
     [RelayCommand]
-    async Task DeleteTraining()
+    public async Task DeleteTraining()
     {
+        if (Trainings == null) return;
+
         IsBusy = true;
         try
         {
-            Training lastTraining = trainings.LastOrDefault();
+            Training lastTraining = Trainings.LastOrDefault()!;
 
             Realm.Write(() =>
             {
                 Realm.Remove(lastTraining);
             });
 
-            trainings.Remove(lastTraining);
+            Trainings.Remove(lastTraining);
         }
         catch (Exception ex)
         {
-            await Application.Current.MainPage.DisplayPromptAsync("Error", ex.Message);
+            await Application.Current!.MainPage!.DisplayPromptAsync("Error", ex.Message);
         }
         IsBusy = false;
     }
