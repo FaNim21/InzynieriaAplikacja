@@ -13,18 +13,67 @@
         </LinearGradientBrush>
     </ContentPage.Background>
 
-    <VerticalStackLayout>
+    <StackLayout>
         <Label 
             Text="Profil"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
-        <Button Text="Powrót"
-                WidthRequest="120"
-                HeightRequest="60"
-                VerticalOptions="End"
-                BackgroundColor="#b23b3b"
-                Margin="20"
-                Command="{Binding GoBackCommand}" />
-    </VerticalStackLayout>
+        <StackLayout
+            BackgroundColor="#242423">
+            <Label
+            Text="Imię"
+            TextColor="#ffffff"/>
+                <Entry 
+                    TextColor="#ede1cc"
+                    Placeholder="Imię"
+                    Text="{Binding Imie, Mode=TwoWay}" />
+            <Label
+            Text="Nazwisko"
+            TextColor="#ffffff"/>
+                <Entry
+                    TextColor="#ede1cc"
+                    Placeholder="Nazwisko"
+                    Text="{Binding Nazwisko, Mode=TwoWay}" />
+            <Label
+            Text="Hasło"
+            TextColor="#ffffff"/>
+                <Entry
+                    TextColor="#ede1cc"
+                    Placeholder="Password"
+                    Text="{Binding Password, Mode=TwoWay}" />
+            <Label
+            Text="Waga"
+            TextColor="#ffffff"/>
+                <Entry
+                    TextColor="#ede1cc"
+                    Placeholder="Waga"
+                    Text="{Binding Waga, Mode=TwoWay}" />
+            <Label
+            Text="Wzrost"
+            TextColor="#ffffff"/>
+                <Entry
+                    TextColor="#ede1cc"
+                    Placeholder="Wzrost"
+                    Text="{Binding Wzrost, Mode=TwoWay}" />
+        </StackLayout>
+    
+        <Button 
+            Text="Zapisz"
+            WidthRequest="120"
+            HeightRequest="60"
+            VerticalOptions="End"
+            BackgroundColor="#309c34"
+            Margin="20"
+            Command="{Binding SaveUserDataCommand}" />
+
+        <Button 
+            Text="Powrót"
+            WidthRequest="120"
+            HeightRequest="60"
+            VerticalOptions="FillAndExpand"
+            BackgroundColor="#b23b3b"
+            Margin="20"
+            Command="{Binding GoBackCommand}" />
+    </StackLayout>
 </ContentPage>

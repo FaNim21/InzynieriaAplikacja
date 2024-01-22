@@ -47,8 +47,6 @@
             <ProgressBar WidthRequest="100"
                          HeightRequest="100"
                          Progress="{Binding Step}" />
-            <Button Text="Wykonaj krok"
-                    Command="{Binding MakeStepCommand}" />
         </StackLayout>
 
         <Button Text="Treningi"

@@ -118,7 +118,8 @@ public partial class MainViewModel : BaseViewModel
     {
         pedometer.ReadingChanged += (sender, reading) =>
         {
-            Console.WriteLine(reading.NumberOfSteps);
+            CurrentStep = reading.NumberOfSteps;
+            Step = (float)CurrentStep / MaxStep;
         };
         try
         {
