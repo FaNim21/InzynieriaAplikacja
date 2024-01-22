@@ -1,12 +1,15 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using InzynieriaAplikacja.Models;
+using Plugin.Maui.Pedometer;
 using System.Collections.ObjectModel;
 
 namespace InzynieriaAplikacja.ViewModels;
 
 public partial class MainViewModel : BaseViewModel
 {
+    private IPedometer pedometer;
+
     [ObservableProperty]
     private ObservableCollection<Training>? trainings;
 
@@ -16,12 +19,15 @@ public partial class MainViewModel : BaseViewModel
     [ObservableProperty]
     private int currentStep;
 
+    [ObservableProperty]
     private int maxStep=100;
 
 
-    public MainViewModel()
+    public MainViewModel(IPedometer pedometer)
     {
         Trainings = [];
+        this.pedometer = pedometer;
+        StartCounting();
     }
 
     [RelayCommand]
@@ -72,7 +78,7 @@ public partial class MainViewModel : BaseViewModel
     public void MakeStep()
     {
         CurrentStep++;
-        Step = (float) CurrentStep / maxStep;
+        Step = (float) CurrentStep / MaxStep;
     }
 
     [RelayCommand]
@@ -88,5 +94,21 @@ public partial class MainViewModel : BaseViewModel
             await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
         }
         IsBusy = false;
+    }
+
+    public void StartCounting()
+    {
+        pedometer.ReadingChanged += (sender, reading) =>
+        {
+            Console.WriteLine(reading.NumberOfSteps);
+        };
+        try
+        {
+            pedometer.Start();
+        }
+        catch(Exception ex)
+        {
+            Application.Current.MainPage.DisplayAlert("Error", ex.Message, ":(");
+        }
     }
 }

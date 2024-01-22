@@ -4,6 +4,8 @@ using InzynieriaAplikacja.ViewModels;
 using InzynieriaAplikacja.ViewModels.Administrator;
 using InzynieriaAplikacja.Views;
 using InzynieriaAplikacja.Views.AdminViews;
+using Microsoft.Extensions.Logging;
+using Plugin.Maui.Pedometer;
 
 namespace InzynieriaAplikacja;
 
@@ -41,6 +43,8 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<AdminControlUserView>();
         builder.Services.AddSingleton<AdminControlUserViewModel>();
+
+        builder.Services.AddSingleton(Pedometer.Default);
 
         return builder.Build();
     }
