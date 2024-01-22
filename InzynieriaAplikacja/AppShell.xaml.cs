@@ -13,6 +13,7 @@ namespace InzynieriaAplikacja
             Routing.RegisterRoute(nameof(MainView), typeof(MainView));
             Routing.RegisterRoute(nameof(AdminPanelView), typeof(AdminPanelView));
             Routing.RegisterRoute(nameof(AdminControlUserView), typeof(AdminControlUserView));
+            Routing.RegisterRoute(nameof(UserProfileView), typeof(UserProfileView));
         }
     }
 }

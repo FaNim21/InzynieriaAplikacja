@@ -99,6 +99,21 @@ public partial class MainViewModel : BaseViewModel
         IsBusy = false;
     }
 
+    [RelayCommand]
+    public async Task GoToUserProfile()
+    {
+        IsBusy = true;
+        try
+        {
+            await Shell.Current.GoToAsync("///UserProfileView");
+        }
+        catch (Exception ex)
+        {
+            await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+        }
+        IsBusy = false;
+    }
+
     public void StartCounting()
     {
         pedometer.ReadingChanged += (sender, reading) =>
