@@ -7,23 +7,46 @@ namespace InzynieriaAplikacja.ViewModels;
 
 public partial class UserProfileViewModel : BaseViewModel
 {
-    public User UserProfile { get; set; }
 
+    [ObservableProperty]
+    private string email;
+    [ObservableProperty]
+    private string password;
+    [ObservableProperty]
+    private string imie;
+    [ObservableProperty]
+    private string nazwisko;
+    [ObservableProperty]
+    private float waga;
+    [ObservableProperty]
+    private float wzrost;
 
     public UserProfileViewModel()
     {
-
+        email = App.CurrentUser.Email;
+        password = App.CurrentUser.Password;
+        imie = App.CurrentUser.Imie;
+        nazwisko = App.CurrentUser.Nazwisko;
+        waga = App.CurrentUser.Waga;
+        wzrost = App.CurrentUser.Wzrost;
     }
 
-    private async Task GetUserData()
+    [RelayCommand]
+    public async Task SaveUserData()
     {
         try
         {
-            
+            App.CurrentUser.Email = email;
+            App.CurrentUser.Password = password;
+            App.CurrentUser.Imie = imie;
+            App.CurrentUser.Nazwisko = nazwisko;
+            App.CurrentUser.Waga = waga;
+            App.CurrentUser.Wzrost = wzrost;
+            await App.Database.UpdateUser(App.CurrentUser);
         }
         catch (Exception ex)
         {
-            await Application.Current!.MainPage!.DisplayAlert("no i zepsoles", $"blad w resjestrowaniu {ex.Message}", "no dobra");
+            await Application.Current!.MainPage!.DisplayAlert("no i zepsoles", $"blad przy zapisywaniu danych {ex.Message}", "no dobra");
         }
     }
 
