@@ -20,6 +20,8 @@ public partial class UserProfileViewModel : BaseViewModel
     private float waga;
     [ObservableProperty]
     private float wzrost;
+    [ObservableProperty]
+    private int celKrokow;
 
     public UserProfileViewModel()
     {
@@ -29,6 +31,7 @@ public partial class UserProfileViewModel : BaseViewModel
         nazwisko = App.CurrentUser.Nazwisko;
         waga = App.CurrentUser.Waga;
         wzrost = App.CurrentUser.Wzrost;
+        celKrokow = App.CurrentUser.CelKrokow;
     }
 
     [RelayCommand]
@@ -42,6 +45,7 @@ public partial class UserProfileViewModel : BaseViewModel
             App.CurrentUser.Nazwisko = nazwisko;
             App.CurrentUser.Waga = waga;
             App.CurrentUser.Wzrost = wzrost;
+            App.CurrentUser.CelKrokow = celKrokow;
             App.Database.UpdateTable(App.CurrentUser);
         }
         catch (Exception ex)

@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="InzynieriaAplikacja.Views.TrainingView"
-             xmlns:viewmodel="clr-namespace:InzynieriaAplikacja.ViewModels"
-             xmlns:models="clr-namespace:InzynieriaAplikacja.Models"
-             x:DataType="viewmodel:TrainingViewModel"
-             Title="Treningi">
+             x:Class="InzynieriaAplikacja.Views.TrainingDoneView"
+             Title="Ukończone treningi">
     <ContentPage.Background>
-        <LinearGradientBrush StartPoint="1.5,2" EndPoint="0,2">
+        <LinearGradientBrush StartPoint="1.5,2" EndPoint="-2,2">
             <GradientStop Color="#660a0a" Offset="0.0"/>
             <GradientStop Color="#280645" Offset="1.0"/>
         </LinearGradientBrush>
     </ContentPage.Background>
-    
     <VerticalStackLayout>
         <Label 
-            Text="Treningi"
+            Text="Treningi wykonane"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>
