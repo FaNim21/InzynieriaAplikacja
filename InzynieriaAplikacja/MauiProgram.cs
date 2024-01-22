@@ -4,7 +4,6 @@ using InzynieriaAplikacja.ViewModels;
 using InzynieriaAplikacja.ViewModels.Administrator;
 using InzynieriaAplikacja.Views;
 using InzynieriaAplikacja.Views.AdminViews;
-using Microsoft.Extensions.Logging;
 
 namespace InzynieriaAplikacja;
 

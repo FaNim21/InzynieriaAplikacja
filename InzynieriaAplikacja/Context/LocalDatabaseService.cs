@@ -14,8 +14,13 @@ public class LocalDatabaseService
 
         _connection = new SQLiteAsyncConnection(AppConfig.DatabasePath, AppConfig.Flags);
         _connection.CreateTableAsync<User>();
-        _connection.CreateTableAsync<Training>();
-        _connection.CreateTableAsync<Meal>();
+        /*_connection.CreateTableAsync<Training>();
+        _connection.CreateTableAsync<Meal>();*/
+    }
+
+    public async Task DropTable<T>() where T : new()
+    {
+        await _connection.DropTableAsync<T>();
     }
 
     #region Users
@@ -59,7 +64,7 @@ public class LocalDatabaseService
     }
     #endregion
 
-    /*#region Trainings
+    #region Trainings
     public async Task<List<Training>> GetTrainings()
     {
         return await _connection.Table<Training>().ToListAsync();
@@ -84,5 +89,5 @@ public class LocalDatabaseService
     {
         await _connection.DeleteAsync(user);
     }
-    #endregion*/
+    #endregion
 }

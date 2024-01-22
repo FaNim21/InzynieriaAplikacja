@@ -30,7 +30,6 @@ public partial class MainViewModel : BaseViewModel
         IsBusy = true;
         try
         {
-            //await App.Database.
             await Shell.Current.GoToAsync("///Login");
         }
         catch (Exception ex)
