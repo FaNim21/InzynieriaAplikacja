@@ -2,7 +2,7 @@
 {
     public static class AppConfig
     {
-        public const string DatabaseFilename = "Inzynieria.db3";
+        public const string DatabaseFilename = "Inzynieriav2.db3";
 
         public const SQLite.SQLiteOpenFlags Flags =
         // open the database in read/write mode

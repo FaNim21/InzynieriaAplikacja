@@ -14,13 +14,20 @@ public class LocalDatabaseService
 
         _connection = new SQLiteAsyncConnection(AppConfig.DatabasePath, AppConfig.Flags);
         _connection.CreateTableAsync<User>();
-        /*_connection.CreateTableAsync<Training>();
-        _connection.CreateTableAsync<Meal>();*/
+        _connection.CreateTableAsync<Activity>();
+        _connection.CreateTableAsync<Statistic>();
+        _connection.CreateTableAsync<Training>();
+        _connection.CreateTableAsync<Meal>();
     }
 
     public async Task DropTable<T>() where T : new()
     {
         await _connection.DropTableAsync<T>();
+    }
+
+    public async Task<List<T>> GetTable<T>() where T : new()
+    {
+        return await _connection.Table<T>().ToListAsync();
     }
 
     #region Users

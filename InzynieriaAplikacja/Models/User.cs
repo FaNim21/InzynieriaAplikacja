@@ -8,63 +8,48 @@ public class User
 {
     [PrimaryKey]
     [AutoIncrement]
-    [Column("id")]
     public int Id { get; set; }
-
-    [Column("administrator")]
     public bool Administrator { get; set; }
-
-    [Column("imie")]
     public string Imie { get; set; }
-
-    [Column("nazwisko")]
     public string Nazwisko { get; set; }
-
-    [Column("e-mail")]
     public string Email { get; set; }
-
-    [Column("password")]
     public string Password { get; set; }
-
-    [Column("waga")]
     public float Waga { get; set; }
-
-    [Column("wzrost")]
     public float Wzrost { get; set; }
+    public float CelKrokow { get; set; }
+    
+
+    [OneToOne(CascadeOperations = CascadeOperation.All)]
+    public Statistic? Statistic { get; set; }
+
+    [OneToMany(CascadeOperations = CascadeOperation.All)]
+    public List<Activity> Activities { get; set; } = [];
 }
 
-public class TreningUzytkownik
-{
-    [ForeignKey(typeof(User))]
-    [Column("id_uzytkownika")]
-    public int IdUzytkownika { get; set; }
-
-    [ForeignKey(typeof(Training))]
-    [Column("id_treningu")]
-    public int IdTreningu { get; set; }
-}
-
-public class Statystyki
+[Table("statistic")]
+public class Statistic
 {
     [PrimaryKey, AutoIncrement]
-    [Column("id")]
     public int Id { get; set; }
-
-    [Column("spozyte_kalorie")]
     public float? SpozyteKalorie { get; set; }
+    public string? WykonaneTreningi { get; set; }
 
-    [Column("lista_spozytych_posilkow")]
-    public string ListaSpozytychPosilkow { get; set; }
+    [OneToMany(CascadeOperations = CascadeOperation.All)]
+    public List<Meal> ZjedzonePosilki { get; set; } = [];
 
-    [Column("wykonane_treningi")]
-    public string WykonaneTreningi { get; set; }
+    [OneToMany(CascadeOperations = CascadeOperation.All)]
+    public List<Training> Trainings { get; set; } = [];
 }
 
-public class StatystykiAktywnosci
+[Table("activity")]
+public class Activity
 {
-    [Indexed]
-    public int IdStatystyki { get; set; }
+    [PrimaryKey, AutoIncrement]
+    public int Id { get; set; }
 
-    [Indexed]
-    public int IdAktywnosci { get; set; }
+    public DateTime? Data { get; set; }
+    public int? Kroki { get; set; }
+    public float SpaloneKalorie { get; set; }
+    public float PokonanyDystans { get; set; }
+    public string? AktywnosciDodatkowe { get; set; }
 }
