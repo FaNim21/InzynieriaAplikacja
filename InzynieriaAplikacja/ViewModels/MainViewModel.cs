@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using InzynieriaAplikacja.Models;
 using Plugin.Maui.Pedometer;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace InzynieriaAplikacja.ViewModels;
 
@@ -84,6 +85,8 @@ public partial class MainViewModel : BaseViewModel
     [RelayCommand]
     public async Task GoToTraining()
     {
+        Trace.WriteLine(App.CurrentUser.Email);
+
         IsBusy = true;
         try
         {

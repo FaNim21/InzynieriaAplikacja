@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using Android.App;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using InzynieriaAplikacja.Models;
 using System.Diagnostics;
@@ -52,8 +53,8 @@ public partial class LoginPageViewModel : BaseViewModel
         }
         catch (Exception ex)
         {
-            await Application.Current!.MainPage!.DisplayAlert("no i zepsoles", $"blad w resjestrowaniu {ex.Message}", "no dobra");
-        }
+            await Microsoft.Maui.Controls.Application.Current!.MainPage!.DisplayAlert("no i zepsoles", $"blad w resjestrowaniu {ex.Message}", "no dobra");
+        }   
         IsBusy = false;
     }
 
@@ -71,12 +72,13 @@ public partial class LoginPageViewModel : BaseViewModel
             }
             else
             {
+                App.CurrentUser = user;
                 await Shell.Current.GoToAsync("///Main");
             }
         }
         catch (Exception ex)
         {
-            await Application.Current!.MainPage!.DisplayAlert("no i zepsoles", $"blad w logowaniu {ex.Message}", "no dobra");
+            await Microsoft.Maui.Controls.Application.Current!.MainPage!.DisplayAlert("no i zepsoles", $"blad w logowaniu {ex.Message}", "no dobra");
         }
         IsBusy = false;
     }

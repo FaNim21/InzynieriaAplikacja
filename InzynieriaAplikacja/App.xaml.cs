@@ -1,4 +1,5 @@
 ﻿using InzynieriaAplikacja.Context;
+using InzynieriaAplikacja.Models;
 
 namespace InzynieriaAplikacja;
 
@@ -11,6 +12,16 @@ public partial class App : Application
         {
             _database ??= new();
             return _database;
+        }
+    }
+
+    private static User _currentUser;
+    public static User CurrentUser
+    {
+        get { return _currentUser; }
+        set
+        {
+            _currentUser = value;
         }
     }
 

@@ -10,8 +10,6 @@
         <VerticalStackLayout Spacing="25"
                              Padding="30, 0"
                              VerticalOptions="Center">
-            <Image Source="todologo.svg"
-                   Margin="0, 0, 0, 15" />
             <Frame Padding="12, 5">
                 <Entry Placeholder="Email"
                        Text="{Binding EmailText}"
@@ -30,7 +28,7 @@
                     TextColor="#EEE"
                     Command="{Binding CreateAccountCommand}" />
 
-
+            <Label Text="v0.1" />
 
         </VerticalStackLayout>
     </ScrollView>
