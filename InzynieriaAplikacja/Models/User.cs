@@ -21,9 +21,6 @@ public class User
 
     [OneToOne(CascadeOperations = CascadeOperation.All)]
     public Statistic? Statistic { get; set; }
-
-    [OneToMany(CascadeOperations = CascadeOperation.All)]
-    public List<Activity> Activities { get; set; } = [];
 }
 
 [Table("statistic")]
@@ -39,6 +36,9 @@ public class Statistic
 
     [OneToMany(CascadeOperations = CascadeOperation.All)]
     public List<Training> Trainings { get; set; } = [];
+
+    [OneToMany(CascadeOperations = CascadeOperation.All)]
+    public List<Activity> Activities { get; set; } = [];
 }
 
 [Table("activity")]
