@@ -44,6 +44,9 @@ public static class MauiProgram
         builder.Services.AddSingleton<AdminControlUserView>();
         builder.Services.AddSingleton<AdminControlUserViewModel>();
 
+        builder.Services.AddSingleton<AdminControlTrainingView>();
+        builder.Services.AddSingleton<AdminControlTrainingViewModel>();
+
         builder.Services.AddSingleton<UserProfileView>();
         builder.Services.AddSingleton<UserProfileViewModel>();
 

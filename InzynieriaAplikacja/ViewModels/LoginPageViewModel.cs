@@ -61,20 +61,11 @@ public partial class LoginPageViewModel : BaseViewModel
             if (user.Administrator)
             {
                 await Shell.Current.GoToAsync("///Admin");
+                Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
             }
             else
             {
                 user.Statistic ??= new() { SpozyteKalorie = 124421 };
-                user.Statistic.Trainings.Add(new Training() { Name = "asdasd" });
-                user.Statistic.Activities.Add(new Models.Activity() { Kroki = 42069 });
-                user.Statistic.EatenMeals.Add(new Models.Meal() { Name = "Kotlet z ziemniaczkami" });
-
-                //EatenMeal eaten = new() { User = user, Meal = new() { Name = "ASDASDRGSGR ASDASD" } };
-                //App.Database.CreateTable(eaten);
-
-                //Models.Activity Activity = new() { AktywnosciDodatkowe = "lol aktywnosc" };
-                //App.Database.CreateTable(Activity);
-                //user.Statistic.Activities.Add(Activity);
 
                 App.CurrentUser = user;
                 await Shell.Current.GoToAsync("///Main");

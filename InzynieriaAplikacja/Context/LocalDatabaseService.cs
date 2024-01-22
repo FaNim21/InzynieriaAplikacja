@@ -20,7 +20,8 @@ public class LocalDatabaseService
         _connection.CreateTable<Training>();
         _connection.CreateTable<Meal>();
 
-        //_connection.CreateTable<EatenMeal>();
+        _connection.CreateTable<EatenMeal>();
+        _connection.CreateTable<FinishedTraining>();
     }
 
     public void DropTable<T>() where T : new()
@@ -79,11 +80,11 @@ public class LocalDatabaseService
     }
     #endregion
 
-    /*#region Statistics
+    #region Statistics
 
     #endregion
 
     #region Activities
 
-    #endregion*/
+    #endregion
 }

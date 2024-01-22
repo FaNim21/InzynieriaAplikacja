@@ -28,6 +28,21 @@ public partial class AdminPanelViewModel : BaseViewModel
     }
 
     [RelayCommand]
+    public async Task OpenTrainingControl()
+    {
+        IsBusy = true;
+        try
+        {
+            await Shell.Current.GoToAsync("///AdminTrainingControl");
+        }
+        catch (Exception ex)
+        {
+            await Application.Current!.MainPage!.DisplayAlert("no i zepsoles", $"blad w wylogowywaniu {ex.Message}", "no dobra");
+        }
+        IsBusy = false;
+    }
+
+    [RelayCommand]
     public async Task SignOut()
     {
         IsBusy = true;

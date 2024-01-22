@@ -1,7 +1,5 @@
-﻿using CommunityToolkit.Maui.Behaviors;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using InzynieriaAplikacja.Models;
 
 namespace InzynieriaAplikacja.ViewModels;
 
@@ -52,20 +50,5 @@ public partial class UserProfileViewModel : BaseViewModel
         {
             await Application.Current!.MainPage!.DisplayAlert("no i zepsoles", $"blad przy zapisywaniu danych {ex.Message}", "no dobra");
         }
-    }
-
-    [RelayCommand]
-    public async Task GoBack()
-    {
-        IsBusy = true;
-        try
-        {
-            await Shell.Current.GoToAsync("///Main");
-        }
-        catch (Exception ex)
-        {
-            await Application.Current!.MainPage!.DisplayAlert("no i zepsoles", $"blad w wylogowywaniu {ex.Message}", "no dobra");
-        }
-        IsBusy = false;
     }
 }

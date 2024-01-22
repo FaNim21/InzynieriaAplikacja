@@ -28,6 +28,12 @@
                   Route="Admin" 
                   Shell.FlyoutItemIsVisible="False"/>
 
+    <ShellContent Title="AdminTrainingControlPage"
+                  ContentTemplate="{DataTemplate local2:AdminControlTrainingView}"
+                  Route="AdminTrainingControl"
+                  Shell.FlyoutItemIsVisible="False" />
+
+
     <ShellContent Title="AdminUserControlPage"
                   ContentTemplate="{DataTemplate local2:AdminControlUserView}"
                   Route="AdminUserControl" 

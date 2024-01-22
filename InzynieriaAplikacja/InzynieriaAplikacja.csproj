@@ -89,6 +89,9 @@
 	  <MauiXaml Update="Views\AdminPanelView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\AdminViews\AdminControlTrainingView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\AdminViews\AdminControlUserView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

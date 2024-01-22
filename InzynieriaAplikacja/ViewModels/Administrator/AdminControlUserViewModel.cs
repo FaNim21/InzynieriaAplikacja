@@ -12,10 +12,7 @@ public partial class AdminControlUserViewModel : BaseViewModel
     private ObservableCollection<User> users = [];
 
 
-    public AdminControlUserViewModel()
-    {
-        
-    }
+    public AdminControlUserViewModel() { }
 
     public override void OnAppearing()
     {

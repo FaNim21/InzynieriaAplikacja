@@ -36,57 +36,10 @@ public partial class MainViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    public async Task SignOut()
-    {
-        IsBusy = true;
-        try
-        {
-            await Shell.Current.GoToAsync("///Login");
-        }
-        catch (Exception ex)
-        {
-            await Application.Current!.MainPage!.DisplayAlert("no i zepsoles", $"blad w wylogowywaniu {ex.Message}", "no dobra");
-        }
-        IsBusy = false;
-    }
-
-    [RelayCommand]
     public void MakeStep()
     {
         CurrentStep++;
         Step = (float) CurrentStep / MaxStep;
-    }
-
-    [RelayCommand]
-    public async Task GoToTraining()
-    {
-        Trace.WriteLine(App.CurrentUser.Email);
-
-        IsBusy = true;
-        try
-        {
-            await Shell.Current.GoToAsync("///Training");
-        }
-        catch (Exception ex)
-        {
-            await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
-        }
-        IsBusy = false;
-    }
-
-    [RelayCommand]
-    public async Task GoToUserProfile()
-    {
-        IsBusy = true;
-        try
-        {
-            await Shell.Current.GoToAsync("///UserProfileView");
-        }
-        catch (Exception ex)
-        {
-            await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
-        }
-        IsBusy = false;
     }
 
     public void StartCounting()

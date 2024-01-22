@@ -1,14 +1,15 @@
 using InzynieriaAplikacja.ViewModels;
+using InzynieriaAplikacja.ViewModels.Administrator;
 
-namespace InzynieriaAplikacja.Views;
+namespace InzynieriaAplikacja.Views.AdminViews;
 
-public partial class TrainingView : ContentPage
+public partial class AdminControlTrainingView : ContentPage
 {
-	public TrainingView(TrainingViewModel viewModel)
+	public AdminControlTrainingView(AdminControlTrainingViewModel viewModel)
 	{
 		InitializeComponent();
 		BindingContext = viewModel;
-    }
+	}
 
     protected override void OnAppearing()
     {

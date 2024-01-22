@@ -1,22 +1,33 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="InzynieriaAplikacja.Views.TrainingView"
-             xmlns:viewmodel="clr-namespace:InzynieriaAplikacja.ViewModels"
+             x:Class="InzynieriaAplikacja.Views.AdminViews.AdminControlTrainingView"
+             xmlns:viewmodel="clr-namespace:InzynieriaAplikacja.ViewModels.Administrator"
              xmlns:models="clr-namespace:InzynieriaAplikacja.Models"
-             x:DataType="viewmodel:TrainingViewModel"
-             Title="Treningi">
-    <ContentPage.Background>
-        <LinearGradientBrush StartPoint="1.5,2"
-                             EndPoint="0,2">
-            <GradientStop Color="#660a0a"
-                          Offset="0.0" />
-            <GradientStop Color="#280645"
-                          Offset="1.0" />
-        </LinearGradientBrush>
-    </ContentPage.Background>
-
+             x:DataType="viewmodel:AdminControlTrainingViewModel"
+             Title="AdminControlTrainingView">
     <VerticalStackLayout>
+        <Label 
+            Text="Welcome to .NET MAUI!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <Button Text="Powrót"
+                WidthRequest="100"
+                HeightRequest="60"
+                VerticalOptions="End"
+                BackgroundColor="#b23b3b"
+                Margin="15"
+                Command="{Binding GoBackCommand}" />
+
+        <Button Text="Dodaj Trening"
+                WidthRequest="100"
+                HeightRequest="60"
+                VerticalOptions="End"
+                BackgroundColor="#b23b3b"
+                Margin="15"
+                Command="{Binding AddNewTrainingCommand}" />
+
         <CollectionView ItemsSource="{Binding Trainings}"
                         HorizontalOptions="CenterAndExpand"
                         VerticalOptions="StartAndExpand">
@@ -45,6 +56,16 @@
                                FontSize="14"
                                TextColor="White"
                                Grid.Row="1" />
+
+                        <StackLayout Orientation="Horizontal"
+                                     Grid.Row="2">
+                            <Button Text="Edit"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AdminControlTrainingViewModel}}, Path=EditCommand}"
+                                    CommandParameter="{Binding .}" />
+                            <Button Text="Delete"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AdminControlTrainingViewModel}}, Path=DeleteCommand}"
+                                    CommandParameter="{Binding .}" />
+                        </StackLayout>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
