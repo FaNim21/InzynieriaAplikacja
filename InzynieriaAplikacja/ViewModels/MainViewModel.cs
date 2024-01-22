@@ -28,6 +28,13 @@ public partial class MainViewModel : BaseViewModel
         StartCounting();
     }
 
+    public override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        MaxStep = App.CurrentUser.CelKrokow;
+    }
+
     [RelayCommand]
     public async Task SignOut()
     {
