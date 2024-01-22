@@ -42,7 +42,7 @@ public partial class UserProfileViewModel : BaseViewModel
             App.CurrentUser.Nazwisko = nazwisko;
             App.CurrentUser.Waga = waga;
             App.CurrentUser.Wzrost = wzrost;
-            await App.Database.UpdateUser(App.CurrentUser);
+            App.Database.UpdateTable(App.CurrentUser);
         }
         catch (Exception ex)
         {

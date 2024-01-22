@@ -16,7 +16,7 @@
 
     <ShellContent Title="Training"
                   ContentTemplate="{DataTemplate local:TrainingView}"
-                  Route="Training"/>
+                  Route="Training" />
 
     <ShellContent Title="AdminPage"
                   ContentTemplate="{DataTemplate local:AdminPanelView}"
@@ -28,5 +28,5 @@
 
     <ShellContent Title="UserProfile"
                   ContentTemplate="{DataTemplate local:UserProfileView}"
-                  Route="UserProfileView"/>
+                  Route="UserProfileView" />
 </Shell>

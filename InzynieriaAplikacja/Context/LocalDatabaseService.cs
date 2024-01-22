@@ -1,100 +1,89 @@
 ﻿using InzynieriaAplikacja.Models;
 using SQLite;
+using SQLiteNetExtensions.Attributes;
+using SQLiteNetExtensions.Extensions;
 
 namespace InzynieriaAplikacja.Context;
 
 public class LocalDatabaseService
 {
-    private readonly SQLiteAsyncConnection _connection;
+    private readonly SQLiteConnection _connection;
 
 
     public LocalDatabaseService()
     {
         if (_connection is not null) return;
+        _connection = new SQLiteConnection(AppConfig.DatabasePath, AppConfig.Flags);
+        _connection.CreateTable<User>();
+        _connection.CreateTable<Activity>();
+        _connection.CreateTable<Statistic>();
+        _connection.CreateTable<Training>();
+        _connection.CreateTable<Meal>();
 
-        _connection = new SQLiteAsyncConnection(AppConfig.DatabasePath, AppConfig.Flags);
-        _connection.CreateTableAsync<User>();
-        _connection.CreateTableAsync<Activity>();
-        _connection.CreateTableAsync<Statistic>();
-        _connection.CreateTableAsync<Training>();
-        _connection.CreateTableAsync<Meal>();
+        //_connection.CreateTable<EatenMeal>();
     }
 
-    public async Task DropTable<T>() where T : new()
+    public void DropTable<T>() where T : new()
     {
-        await _connection.DropTableAsync<T>();
+        _connection.DropTable<T>();
     }
-
-    public async Task<List<T>> GetTable<T>() where T : new()
+    public List<T> GetTable<T>() where T : new()
     {
-        return await _connection.Table<T>().ToListAsync();
+        return _connection.Table<T>().ToList();
+    }
+    public void CreateTable<T>(T table) where T : new()
+    {
+        _connection.InsertWithChildren(table, recursive: true);
+    }
+    public void UpdateTable<T>(T table) where T : new()
+    {
+        _connection.UpdateWithChildren(table);
+    }
+    public void DeleteTable<T>(T table) where T : new()
+    {
+        _connection.Delete(table);
     }
 
     #region Users
-    public async Task<List<User>> GetUsers()
+    public User GetUserById(int id)
     {
-        return await _connection.Table<User>().ToListAsync();
+        return _connection.GetWithChildren<User>(id, recursive: true);
     }
-
-    public async Task<User> GetUserById(int id)
+    public User? GetUserByEmail(string email)
     {
-        return await _connection.Table<User>().Where(x => x.Id == id).FirstAsync();
+        User user = _connection.Table<User>().Where(x => x.Email == email).FirstOrDefault();
+        if (user != null) return _connection.GetWithChildren<User>(user.Id);
+        return null;
     }
-
-    public async Task<User> GetUsersByEmail(string email)
+    public User LoginUser(string email, string password)
     {
-        return await _connection.Table<User>().Where(x => x.Email == email).FirstOrDefaultAsync();
+        User? user = GetUserByEmail(email) ?? throw new Exception($"Nie istnieje użytkownik o e-mailu: {email}");
+        if (user.Password != password) throw new Exception("Nie prawidłowe hasło!");
+
+        return _connection.GetWithChildren<User>(user.Id);
     }
-
-    public async Task<User> LoginUser(string email, string password)
+    public void CreateUser(User user)
     {
-        return await _connection.Table<User>().Where(user => user.Email == email && user.Password == password).FirstAsync();
-    }
-
-    public async Task CreateUser(User user)
-    {
-        var foundUser = await GetUsersByEmail(user.Email);
+        var foundUser = GetUserByEmail(user.Email);
         if (foundUser != null)
             throw new Exception($"Użytkownik o tym mailu {user.Email} juz istnieje");
 
-        await _connection.InsertAsync(user);
-    }
-
-    public async Task UpdateUser(User user)
-    {
-        await _connection.UpdateAsync(user);
-    }
-
-    public async Task DeleteUser(User user)
-    {
-        await _connection.DeleteAsync(user);
+        _connection.InsertWithChildren(user);
     }
     #endregion
 
     #region Trainings
-    public async Task<List<Training>> GetTrainings()
+    public Training GetTrainingById(int id)
     {
-        return await _connection.Table<Training>().ToListAsync();
-    }
-
-    public async Task<Training> GetTrainingById(int id)
-    {
-        return await _connection.Table<Training>().Where(x => x.Id == id).FirstOrDefaultAsync();
-    }
-
-    public async Task CreateTraining(Training user)
-    {
-        await _connection.InsertAsync(user);
-    }
-
-    public async Task UpdateTraining(Training user)
-    {
-        await _connection.UpdateAsync(user);
-    }
-
-    public async Task DeleteTraining(Training user)
-    {
-        await _connection.DeleteAsync(user);
+        return _connection.GetWithChildren<Training>(id, recursive: true);
     }
     #endregion
+
+    /*#region Statistics
+
+    #endregion
+
+    #region Activities
+
+    #endregion*/
 }

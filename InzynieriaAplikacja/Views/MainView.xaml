@@ -4,6 +4,7 @@
              x:Class="InzynieriaAplikacja.Views.MainView"
              xmlns:vm="clr-namespace:InzynieriaAplikacja.ViewModels"
              xmlns:models="clr-namespace:InzynieriaAplikacja.Models"
+             Shell.PresentationMode="Modal"
              x:DataType="vm:MainViewModel">
     <ContentPage.Background>
         <LinearGradientBrush StartPoint="1.5,2"

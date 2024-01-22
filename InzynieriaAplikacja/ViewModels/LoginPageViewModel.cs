@@ -16,8 +16,11 @@ public partial class LoginPageViewModel : BaseViewModel
 
     public LoginPageViewModel()
     {
-        emailText = "asdasd@wp.pl";
-        passwordText = "1432432a";
+        /*emailText = "asdasd@wp.pl";
+        passwordText = "1432432a";*/
+
+        emailText = "admin";
+        passwordText = "admin";
 
         Task.Run(CreateAdmin);
     }
@@ -26,14 +29,9 @@ public partial class LoginPageViewModel : BaseViewModel
     {
         try
         {
-            await App.Database.CreateUser(new User() { Email = "admin", Password = "admin", Administrator = true });
+            App.Database.CreateUser(new User() { Email = "admin", Password = "admin", Administrator = true });
         }
         catch { }
-    }
-
-    public static async Task StartDashboard()
-    {
-        await Shell.Current.GoToAsync("///Main");
     }
 
     [RelayCommand]
@@ -42,18 +40,12 @@ public partial class LoginPageViewModel : BaseViewModel
         IsBusy = true;
         try
         {
-            var users = await App.Database.GetUsers();
-            foreach (var user in users)
-            {
-                Trace.Write(user.Email);
-            }
-
-            await App.Database.CreateUser(new User() { Email = EmailText, Password = PasswordText });
+            App.Database.CreateUser(new User() { Email = EmailText, Password = PasswordText });
         }
         catch (Exception ex)
         {
-            await Microsoft.Maui.Controls.Application.Current!.MainPage!.DisplayAlert("no i zepsoles", $"blad w resjestrowaniu {ex.Message}", "no dobra");
-        }   
+            await Application.Current!.MainPage!.DisplayAlert("Error", $"blad w resjestrowaniu {ex.Message}", "OK");
+        }
         IsBusy = false;
     }
 
@@ -63,7 +55,7 @@ public partial class LoginPageViewModel : BaseViewModel
         IsBusy = true;
         try
         {
-            var user = await App.Database.LoginUser(EmailText, PasswordText);
+            var user = App.Database.LoginUser(EmailText, PasswordText);
 
             if (user.Administrator)
             {
@@ -71,13 +63,25 @@ public partial class LoginPageViewModel : BaseViewModel
             }
             else
             {
+                user.Statistic ??= new() { SpozyteKalorie = 124421 };
+                user.Statistic.Trainings.Add(new Training() { Name = "asdasd" });
+                user.Statistic.Activities.Add(new Models.Activity() { Kroki = 42069 });
+                user.Statistic.EatenMeals.Add(new Models.Meal() { Name = "Kotlet z ziemniaczkami" });
+
+                //EatenMeal eaten = new() { User = user, Meal = new() { Name = "ASDASDRGSGR ASDASD" } };
+                //App.Database.CreateTable(eaten);
+
+                //Models.Activity Activity = new() { AktywnosciDodatkowe = "lol aktywnosc" };
+                //App.Database.CreateTable(Activity);
+                //user.Statistic.Activities.Add(Activity);
+
                 App.CurrentUser = user;
                 await Shell.Current.GoToAsync("///Main");
             }
         }
         catch (Exception ex)
         {
-            await Microsoft.Maui.Controls.Application.Current!.MainPage!.DisplayAlert("no i zepsoles", $"blad w logowaniu {ex.Message}", "no dobra");
+            await Application.Current!.MainPage!.DisplayAlert("no i zepsoles", $"{ex.Message}", "no dobra");
         }
         IsBusy = false;
     }

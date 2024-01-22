@@ -27,7 +27,7 @@ public partial class AdminControlUserViewModel : BaseViewModel
         try
         {
             Users.Clear();
-            Users = new(await App.Database.GetUsers());
+            Users = new(App.Database.GetTable<User>());
         }
         catch (Exception ex)
         {
@@ -54,7 +54,7 @@ public partial class AdminControlUserViewModel : BaseViewModel
         IsBusy = true;
         try
         {
-            await App.Database.DeleteUser(user);
+            App.Database.DeleteTable(user);
             Users.Remove(user);
         }
         catch (Exception ex)

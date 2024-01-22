@@ -17,10 +17,13 @@ public class User
     public float Waga { get; set; }
     public float Wzrost { get; set; }
     public float CelKrokow { get; set; }
-    
+
+
+    [ForeignKey(typeof(Statistic))]
+    public int IdStatistic { get; set; }
 
     [OneToOne(CascadeOperations = CascadeOperation.All)]
-    public Statistic? Statistic { get; set; }
+    public Statistic? Statistic { get; set; } = new();
 }
 
 [Table("statistic")]
@@ -31,15 +34,39 @@ public class Statistic
     public float? SpozyteKalorie { get; set; }
     public string? WykonaneTreningi { get; set; }
 
+
     [OneToMany(CascadeOperations = CascadeOperation.All)]
-    public List<Meal> ZjedzonePosilki { get; set; } = [];
+    public List<Meal> EatenMeals { get; set; } = [];
+
 
     [OneToMany(CascadeOperations = CascadeOperation.All)]
     public List<Training> Trainings { get; set; } = [];
 
+
     [OneToMany(CascadeOperations = CascadeOperation.All)]
     public List<Activity> Activities { get; set; } = [];
 }
+
+/*[Table("zjedzony_posilek")]
+public class EatenMeal
+{
+    [PrimaryKey, AutoIncrement]
+    public int Id { get; set; }
+
+
+    [ForeignKey(typeof(User))]
+    public int IdUser { get; set; }
+
+    [OneToOne(CascadeOperations = CascadeOperation.All)]
+    public User User { get; set; } = new();
+
+
+    [ForeignKey(typeof(Meal))]
+    public int IdMeal { get; set; }
+
+    [OneToOne(CascadeOperations = CascadeOperation.All)]
+    public Meal? Meal { get; set; } = new();
+}*/
 
 [Table("activity")]
 public class Activity
@@ -52,4 +79,7 @@ public class Activity
     public float SpaloneKalorie { get; set; }
     public float PokonanyDystans { get; set; }
     public string? AktywnosciDodatkowe { get; set; }
+
+    [ForeignKey(typeof(Statistic))]
+    public int StatisticId { get; set; }
 }

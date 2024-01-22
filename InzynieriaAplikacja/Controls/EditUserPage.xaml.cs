@@ -28,7 +28,7 @@ public partial class EditUserPage : ContentPage
         _user.Waga = float.Parse(WagaEntry.Text);
         _user.Wzrost = float.Parse(WzrostEntry.Text);
 
-        App.Database.UpdateUser(_user);
+        App.Database.UpdateTable(_user);
         Navigation.PopAsync();
     }
 }

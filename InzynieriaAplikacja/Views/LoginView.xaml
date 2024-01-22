@@ -28,7 +28,7 @@
                     TextColor="#EEE"
                     Command="{Binding CreateAccountCommand}" />
 
-            <Label Text="v0.1" />
+            <Label Text="v0.2" />
 
         </VerticalStackLayout>
     </ScrollView>
