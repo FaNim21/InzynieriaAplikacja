@@ -25,4 +25,8 @@
     <ShellContent Title="AdminUserControlPage"
                   ContentTemplate="{DataTemplate local2:AdminControlUserView}"
                   Route="AdminUserControl" />
+
+    <ShellContent Title="UserProfile"
+                  ContentTemplate="{DataTemplate local:UserProfileView}"
+                  Route="UserProfileView"/>
 </Shell>

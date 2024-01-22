@@ -18,6 +18,7 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <StackLayout Grid.Row="0">
             <Label Text="Witaj użytkowniku!"
@@ -51,6 +52,15 @@
                 Margin="15"
                 Command="{Binding GoToTrainingCommand}"
                 Grid.Row="2"/>
+        
+        <Button Text="Profil"
+                WidthRequest="100"
+                HeightRequest="60"
+                VerticalOptions="End"
+                BackgroundColor="Black"
+                Margin="15"
+                Command="{Binding GoToUserProfileCommand}"
+                Grid.Row="3"/>
 
         <Button Text="Wyloguj"
                 WidthRequest="100"
@@ -59,6 +69,6 @@
                 BackgroundColor="#b23b3b"
                 Margin="15"
                 Command="{Binding SignOutCommand}"
-                Grid.Row="3" />
+                Grid.Row="4" />
     </Grid>
 </ContentPage>
