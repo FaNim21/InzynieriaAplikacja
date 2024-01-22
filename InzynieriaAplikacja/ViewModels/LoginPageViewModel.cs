@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using InzynieriaAplikacja.Controls;
 using InzynieriaAplikacja.Models;
 using System.Diagnostics;
 
@@ -73,6 +74,7 @@ public partial class LoginPageViewModel : BaseViewModel
             {
                 App.CurrentUser = user;
                 await Shell.Current.GoToAsync("///Main");
+                Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
             }
         }
         catch (Exception ex)

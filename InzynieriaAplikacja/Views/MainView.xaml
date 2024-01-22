@@ -4,7 +4,8 @@
              x:Class="InzynieriaAplikacja.Views.MainView"
              xmlns:vm="clr-namespace:InzynieriaAplikacja.ViewModels"
              xmlns:models="clr-namespace:InzynieriaAplikacja.Models"
-             x:DataType="vm:MainViewModel">
+             x:DataType="vm:MainViewModel"
+             Title="Home">
     <ContentPage.Background>
         <LinearGradientBrush StartPoint="1.5,2"
                              EndPoint="0,2">
@@ -17,7 +18,6 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
@@ -37,43 +37,38 @@
         <StackLayout Grid.Row="1"
                      HorizontalOptions="Center"
                      VerticalOptions="Center">
-            <Label Text="{Binding CurrentStep}"
-                   TextColor="Aquamarine"
-                   FontSize="30"
-                   FontFamily="Times New Roman"
-                   HorizontalTextAlignment="Center">
+            <Label
+                HorizontalOptions="CenterAndExpand">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span 
+                            Text="{Binding CurrentStep}"
+                            TextColor="Wheat"
+                            FontSize="30"/>
+                        <Span
+                            Text=" / "
+                            FontSize="25"/>
+                        <Span
+                            Text="{Binding MaxStep}"
+                            TextColor="Wheat"
+                            FontSize="25"/>
+                    </FormattedString>
+                </Label.FormattedText>
 
             </Label>
-            <ProgressBar WidthRequest="100"
-                         HeightRequest="100"
-                         Progress="{Binding Step}" />
+            <ProgressBar ProgressColor="Green"
+                         Margin="10"
+                         WidthRequest="200"
+                         HeightRequest="60"
+                         ScaleY="10"
+                         Progress="{Binding Step}" 
+                         VerticalOptions="Center"
+                         HorizontalOptions="Center"/>
+            <Button
+                Text="Wykonaj"
+                Command="{Binding MakeStepCommand}">
+
+            </Button>
         </StackLayout>
-
-        <Button Text="Treningi"
-                WidthRequest="100"
-                HeightRequest="60"
-                VerticalOptions="End"
-                BackgroundColor="Black"
-                Margin="15"
-                Command="{Binding GoToTrainingCommand}"
-                Grid.Row="2"/>
-        
-        <Button Text="Profil"
-                WidthRequest="100"
-                HeightRequest="60"
-                VerticalOptions="End"
-                BackgroundColor="Black"
-                Margin="15"
-                Command="{Binding GoToUserProfileCommand}"
-                Grid.Row="3"/>
-
-        <Button Text="Wyloguj"
-                WidthRequest="100"
-                HeightRequest="60"
-                VerticalOptions="End"
-                BackgroundColor="#b23b3b"
-                Margin="15"
-                Command="{Binding SignOutCommand}"
-                Grid.Row="4" />
     </Grid>
 </ContentPage>

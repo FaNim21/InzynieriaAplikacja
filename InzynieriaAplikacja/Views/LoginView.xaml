@@ -5,6 +5,7 @@
              xmlns:vm="clr-namespace:InzynieriaAplikacja.ViewModels"
              x:DataType="vm:LoginPageViewModel"
              Shell.NavBarIsVisible="false"
+             Shell.FlyoutItemIsVisible="False"
              Title="Login Page">
     <ScrollView>
         <VerticalStackLayout Spacing="25"

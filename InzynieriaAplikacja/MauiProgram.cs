@@ -47,6 +47,12 @@ public static class MauiProgram
         builder.Services.AddSingleton<UserProfileView>();
         builder.Services.AddSingleton<UserProfileViewModel>();
 
+        builder.Services.AddSingleton<ActivityView>();
+        builder.Services.AddSingleton<ActivityViewModel>();
+
+        builder.Services.AddSingleton<MealView>();
+        builder.Services.AddSingleton<MealViewModel>();
+
         builder.Services.AddSingleton(Pedometer.Default);
 
         return builder.Build();

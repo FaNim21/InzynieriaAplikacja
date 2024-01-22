@@ -5,7 +5,7 @@
              xmlns:viewmodel="clr-namespace:InzynieriaAplikacja.ViewModels"
              xmlns:models="clr-namespace:InzynieriaAplikacja.Models"
              x:DataType="viewmodel:UserProfileViewModel"
-             Title="">
+             Title="Profil">
     <ContentPage.Background>
         <LinearGradientBrush StartPoint="1.5,2" EndPoint="0,2">
             <GradientStop Color="#660a0a" Offset="0.0"/>
@@ -56,8 +56,15 @@
                     TextColor="#ede1cc"
                     Placeholder="Wzrost"
                     Text="{Binding Wzrost, Mode=TwoWay}" />
+            <Label
+            Text="Cel kroków"
+            TextColor="#ffffff"/>
+                <Entry
+                    TextColor="#ede1cc"
+                    Placeholder="Cel kroków"
+                    Text="{Binding CelKrokow, Mode=TwoWay}" />
         </StackLayout>
-    
+
         <Button 
             Text="Zapisz"
             WidthRequest="120"
@@ -66,14 +73,5 @@
             BackgroundColor="#309c34"
             Margin="20"
             Command="{Binding SaveUserDataCommand}" />
-
-        <Button 
-            Text="Powrót"
-            WidthRequest="120"
-            HeightRequest="60"
-            VerticalOptions="FillAndExpand"
-            BackgroundColor="#b23b3b"
-            Margin="20"
-            Command="{Binding GoBackCommand}" />
     </StackLayout>
 </ContentPage>
