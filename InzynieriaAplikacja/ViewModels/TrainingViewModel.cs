@@ -22,7 +22,6 @@ public partial class TrainingViewModel: BaseViewModel
         Task.Run(GetTrainings);
     }
 
-    //TODO: Zrobic metode do pobierania treningow z bazy danych
     public async Task GetTrainings()
     {
         try

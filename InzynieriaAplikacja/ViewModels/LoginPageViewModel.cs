@@ -17,11 +17,11 @@ public partial class LoginPageViewModel : BaseViewModel
 
     public LoginPageViewModel()
     {
-        /*emailText = "asdasd@wp.pl";
-        passwordText = "1432432a";*/
+        emailText = "user@example.com";
+        passwordText = "user123";
 
-        emailText = "admin";
-        passwordText = "admin";
+        //emailText = "admin";
+        //passwordText = "admin";
 
         Task.Run(CreateAdmin);
     }
@@ -42,7 +42,7 @@ public partial class LoginPageViewModel : BaseViewModel
         try
         {
             App.Database.CreateUser(new User() { Email = EmailText, Password = PasswordText });
-            Application.Current.MainPage.DisplayAlert("Message", $"Dodano konto użytkownika {EmailText}", "Ok");
+            await Application.Current!.MainPage!.DisplayAlert("Message", $"Dodano konto użytkownika {EmailText}", "Ok");
         }
         catch (Exception ex)
         {

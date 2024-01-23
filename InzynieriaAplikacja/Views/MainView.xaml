@@ -4,6 +4,7 @@
              x:Class="InzynieriaAplikacja.Views.MainView"
              xmlns:vm="clr-namespace:InzynieriaAplikacja.ViewModels"
              xmlns:models="clr-namespace:InzynieriaAplikacja.Models"
+             xmlns:drawable="clr-namespace:InzynieriaAplikacja.Drawables"
              x:DataType="vm:MainViewModel"
              Title="Home">
     <ContentPage.Background>
@@ -56,14 +57,57 @@
                 </Label.FormattedText>
 
             </Label>
-            <ProgressBar ProgressColor="Green"
+            <Label
+                HorizontalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span
+                            Text="{Binding Distance}"
+                            TextColor="Wheat"
+                            FontSize="20"/>
+                        <Span
+                            Text=" km"
+                            TextColor="Wheat"
+                            FontSize="15"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <!--<ProgressBar ProgressColor="Green"
                          Margin="10"
                          WidthRequest="200"
                          HeightRequest="60"
                          ScaleY="10"
                          Progress="{Binding Step}" 
                          VerticalOptions="Center"
-                         HorizontalOptions="Center"/>
+                         HorizontalOptions="Center"/>-->
+            <drawable:CircularProgressBar Progress="{Binding Step}"
+                                          Size="300"
+                                          Thickness="20"
+                                          ProgressColor="DarkGreen"
+                                          ProgressLeftColor="Transparent"
+                                          TextColor="Wheat"
+                                          HorizontalOptions="Center"
+                                          VerticalOptions="Center"/>
+            <Label
+                HorizontalOptions="Center"
+                VerticalOptions="End">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span
+                            Text="Kalorie spalone: "
+                            TextColor="Green"
+                            FontSize="15"/>
+                        <Span
+                            Text="{Binding Calories}"
+                            TextColor="Green"
+                            FontSize="15"/>
+                        <Span
+                            Text=" kcal"
+                            TextColor="Green"
+                            FontSize="15"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
             <Button
                 Text="Wykonaj"
                 Command="{Binding MakeStepCommand}">

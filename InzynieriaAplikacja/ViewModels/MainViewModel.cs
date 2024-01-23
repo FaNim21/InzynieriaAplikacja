@@ -20,6 +20,11 @@ public partial class MainViewModel : BaseViewModel
     [ObservableProperty]
     private int maxStep;
 
+    [ObservableProperty]
+    private float distance;
+
+    [ObservableProperty]
+    private int calories;
 
     public MainViewModel(IPedometer pedometer)
     {
@@ -40,6 +45,13 @@ public partial class MainViewModel : BaseViewModel
     {
         CurrentStep++;
         Step = (float) CurrentStep / MaxStep;
+    }
+
+    partial void OnCurrentStepChanged(int value)
+    {
+        Step = (float)value / MaxStep;
+        Distance = (float)Math.Round((value * 0.7f) / 1000, 2);
+        Calories = (int)Math.Round(value * 0.04f);
     }
 
     public void StartCounting()

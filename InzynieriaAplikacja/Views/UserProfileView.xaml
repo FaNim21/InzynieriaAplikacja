@@ -73,5 +73,14 @@
             BackgroundColor="#309c34"
             Margin="20"
             Command="{Binding SaveUserDataCommand}" />
+
+        <Button
+            Text="Usuń Profil"
+            WidthRequest="120"
+            HeightRequest="60"
+            VerticalOptions="End"
+            BackgroundColor="#b23b3b"
+            Margin="20"
+            Command="{Binding DeleteProfileCommand}"/>
     </StackLayout>
 </ContentPage>
