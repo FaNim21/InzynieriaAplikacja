@@ -42,6 +42,7 @@ public partial class LoginPageViewModel : BaseViewModel
         try
         {
             App.Database.CreateUser(new User() { Email = EmailText, Password = PasswordText });
+            Application.Current.MainPage.DisplayAlert("Message", $"Dodano konto użytkownika {EmailText}", "Ok");
         }
         catch (Exception ex)
         {
