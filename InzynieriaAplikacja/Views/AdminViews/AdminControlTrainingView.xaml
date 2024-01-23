@@ -5,28 +5,30 @@
              xmlns:viewmodel="clr-namespace:InzynieriaAplikacja.ViewModels.Administrator"
              xmlns:models="clr-namespace:InzynieriaAplikacja.Models"
              x:DataType="viewmodel:AdminControlTrainingViewModel"
-             Title="AdminControlTrainingView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             Title="">
+    <StackLayout>
+        <Label Text="Panel kontroli Traningów"
+               FontSize="28"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"
+               Margin="15" />
 
-        <Button Text="Powrót"
-                WidthRequest="100"
-                HeightRequest="60"
-                VerticalOptions="End"
-                BackgroundColor="#b23b3b"
-                Margin="15"
-                Command="{Binding GoBackCommand}" />
+        <HorizontalStackLayout Margin="15"
+                               HorizontalOptions="Center">
+            <Button Text="Dodaj Trening"
+                    WidthRequest="100"
+                    HeightRequest="60"
+                    VerticalOptions="End"
+                    BackgroundColor="#b23b3b"
+                    Command="{Binding AddNewTrainingCommand}" />
 
-        <Button Text="Dodaj Trening"
-                WidthRequest="100"
-                HeightRequest="60"
-                VerticalOptions="End"
-                BackgroundColor="#b23b3b"
-                Margin="15"
-                Command="{Binding AddNewTrainingCommand}" />
+            <Button Text="Powrót"
+                    WidthRequest="100"
+                    HeightRequest="60"
+                    VerticalOptions="End"
+                    BackgroundColor="#b23b3b"
+                    Command="{Binding GoBackCommand}" />
+        </HorizontalStackLayout>
 
         <CollectionView ItemsSource="{Binding Trainings}"
                         HorizontalOptions="CenterAndExpand"
@@ -70,5 +72,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </VerticalStackLayout>
+    </StackLayout>
 </ContentPage>

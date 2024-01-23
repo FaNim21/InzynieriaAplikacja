@@ -1,6 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using InzynieriaAplikacja.Controls;
 using InzynieriaAplikacja.Models;
 using System.Collections.ObjectModel;
 
@@ -22,7 +20,6 @@ public partial class TrainingViewModel: BaseViewModel
         Task.Run(GetTrainings);
     }
 
-    //TODO: Zrobic metode do pobierania treningow z bazy danych
     public async Task GetTrainings()
     {
         try
@@ -32,7 +29,7 @@ public partial class TrainingViewModel: BaseViewModel
         }
         catch (Exception ex)
         {
-            await Application.Current!.MainPage!.DisplayAlert("no i zepsoles", $"blad w resjestrowaniu {ex.Message}", "no dobra");
+            await Application.Current!.MainPage!.DisplayAlert("ERROR", $"Błąd przy pobieraniu treningów: {ex.Message}", "OK");
         }
     }
 }

@@ -5,7 +5,6 @@ namespace InzynieriaAplikacja.ViewModels;
 
 public partial class UserProfileViewModel : BaseViewModel
 {
-
     [ObservableProperty]
     private string email;
     [ObservableProperty]
@@ -20,6 +19,12 @@ public partial class UserProfileViewModel : BaseViewModel
     private float wzrost;
     [ObservableProperty]
     private int celKrokow;
+    [ObservableProperty]
+    private int rokUrodzenia;
+
+    [ObservableProperty]
+    private float bmi;
+
 
     public UserProfileViewModel()
     {
@@ -30,6 +35,13 @@ public partial class UserProfileViewModel : BaseViewModel
         waga = App.CurrentUser.Waga;
         wzrost = App.CurrentUser.Wzrost;
         celKrokow = App.CurrentUser.CelKrokow;
+        rokUrodzenia = App.CurrentUser.RokUrodzenia;
+    }
+
+    public override void OnAppearing()
+    {
+        base.OnAppearing();
+        CalculateBMI();
     }
 
     [RelayCommand]
@@ -37,18 +49,26 @@ public partial class UserProfileViewModel : BaseViewModel
     {
         try
         {
-            App.CurrentUser.Email = email;
-            App.CurrentUser.Password = password;
-            App.CurrentUser.Imie = imie;
-            App.CurrentUser.Nazwisko = nazwisko;
-            App.CurrentUser.Waga = waga;
-            App.CurrentUser.Wzrost = wzrost;
-            App.CurrentUser.CelKrokow = celKrokow;
+            App.CurrentUser.Email = Email;
+            App.CurrentUser.Password = Password;
+            App.CurrentUser.Imie = Imie;
+            App.CurrentUser.Nazwisko = Nazwisko;
+            App.CurrentUser.Waga = Waga;
+            App.CurrentUser.Wzrost = Wzrost;
+            App.CurrentUser.CelKrokow = CelKrokow;
+            App.CurrentUser.RokUrodzenia = RokUrodzenia;
             App.Database.UpdateTable(App.CurrentUser);
         }
         catch (Exception ex)
         {
-            await Application.Current!.MainPage!.DisplayAlert("no i zepsoles", $"blad przy zapisywaniu danych {ex.Message}", "no dobra");
+            await Application.Current!.MainPage!.DisplayAlert("Error", $"blad przy zapisywaniu danych: {ex.Message}", "OK");
         }
+    }
+
+    partial void OnWzrostChanged(float value) => CalculateBMI();
+    partial void OnWagaChanged(float value) => CalculateBMI();
+    private void CalculateBMI()
+    {
+        Bmi = (float)Math.Round(Waga / ((Wzrost / 100) * (Wzrost / 100)), 2);
     }
 }

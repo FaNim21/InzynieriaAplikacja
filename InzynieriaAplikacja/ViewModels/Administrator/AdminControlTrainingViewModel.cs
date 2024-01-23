@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using InzynieriaAplikacja.Controls;
 using InzynieriaAplikacja.Models;
 using System.Collections.ObjectModel;
 
@@ -49,8 +50,8 @@ public partial class AdminControlTrainingViewModel : BaseViewModel
     public async Task Edit(Training training)
     {
         IsBusy = true;
-        /*var editUserPage = new EditUserPage(user);
-        await Shell.Current.Navigation.PushAsync(editUserPage);*/
+        var editTrainingPage = new EditTrainingPage(training);
+        await Shell.Current.Navigation.PushAsync(editTrainingPage);
         IsBusy = false;
     }
 

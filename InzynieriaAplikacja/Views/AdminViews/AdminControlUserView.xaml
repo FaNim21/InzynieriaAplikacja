@@ -10,7 +10,8 @@
         <Label Text="Panel kontroli Użytkownika"
                FontSize="28"
                VerticalOptions="Center"
-               HorizontalOptions="Center" />
+               HorizontalOptions="Center" 
+               Margin="15"/>
 
         <Button Text="Powrót"
                 WidthRequest="100"

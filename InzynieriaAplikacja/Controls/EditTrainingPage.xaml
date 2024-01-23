@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InzynieriaAplikacja.Controls.EditTrainingPage"
+             Title="EditTrainingPage">
+    <StackLayout Margin="10">
+        <Label Text="Nazwa:" />
+        <Entry x:Name="NameEntry" />
+
+        <Label Text="Opis:" />
+        <Entry x:Name="DescriptionEntry" />
+
+        <Label Text="Czas:" />
+        <Entry x:Name="TimeEntry" />
+
+        <Label Text="Spalone kalorie:" />
+        <Entry x:Name="CaloriesEntry" />
+
+        <Label Text="Ćwiczenia:" />
+        <Editor x:Name="TrainingEntry" AutoSize="TextChanges"/>
+
+        <Button Text="Save"
+                Clicked="SaveButton_Clicked" />
+    </StackLayout>
+</ContentPage>

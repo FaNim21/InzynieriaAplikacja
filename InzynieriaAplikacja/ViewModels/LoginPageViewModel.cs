@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using InzynieriaAplikacja.Context;
 using InzynieriaAplikacja.Controls;
 using InzynieriaAplikacja.Models;
 using System.Diagnostics;
@@ -23,10 +24,10 @@ public partial class LoginPageViewModel : BaseViewModel
         emailText = "admin";
         passwordText = "admin";
 
-        Task.Run(CreateAdmin);
+        CreateAdmin();
     }
 
-    private async Task CreateAdmin()
+    private static void CreateAdmin()
     {
         try
         {
@@ -42,11 +43,11 @@ public partial class LoginPageViewModel : BaseViewModel
         try
         {
             App.Database.CreateUser(new User() { Email = EmailText, Password = PasswordText });
-            Application.Current.MainPage.DisplayAlert("Message", $"Dodano konto użytkownika {EmailText}", "Ok");
+            await Application.Current.MainPage.DisplayAlert("Message", $"Dodano konto użytkownika {EmailText}", "Ok");
         }
         catch (Exception ex)
         {
-            await Application.Current!.MainPage!.DisplayAlert("Error", $"blad w resjestrowaniu {ex.Message}", "OK");
+            await Application.Current!.MainPage!.DisplayAlert("Error", $"Błąd w rejestrowaniu admin: {ex.Message}", "OK");
         }
         IsBusy = false;
     }

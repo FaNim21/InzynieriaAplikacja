@@ -16,6 +16,7 @@ public class User
     public string Password { get; set; }
     public float Waga { get; set; }
     public float Wzrost { get; set; }
+    public int RokUrodzenia { get; set; }
     public int CelKrokow { get; set; }
 
 
