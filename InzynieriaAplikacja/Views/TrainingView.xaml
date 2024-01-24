@@ -30,7 +30,7 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Training">
                     <Grid Padding="10"
-                          BackgroundColor="#2196F3">
+                          BackgroundColor="PaleVioletRed">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="25" />
                             <RowDefinition Height="25" />
@@ -45,6 +45,13 @@
                                FontSize="14"
                                TextColor="White"
                                Grid.Row="1" />
+                        <Button Text="Dodaj do wykonanych"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TrainingViewModel}}, Path=AddToCompletedCommand} "
+                                HorizontalOptions="Center"
+                                VerticalOptions="End"
+                                Margin="10,10,10,-70"
+                                BackgroundColor="LightGreen"
+                                TextColor="Black"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
