@@ -24,7 +24,7 @@ public static class MauiProgram
             });
 
 #if DEBUG
-		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
         builder.Services.AddSingleton<LocalDatabaseService>();
@@ -58,6 +58,9 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<MealView>();
         builder.Services.AddSingleton<MealViewModel>();
+
+        builder.Services.AddSingleton<UserAddMealView>();
+        builder.Services.AddSingleton<UserAddMealViewModel>();
 
         builder.Services.AddSingleton(Pedometer.Default);
 

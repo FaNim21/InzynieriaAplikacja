@@ -5,78 +5,87 @@
        xmlns:local="clr-namespace:InzynieriaAplikacja.Views"
        xmlns:local2="clr-namespace:InzynieriaAplikacja.Views.AdminViews"
        Shell.FlyoutBehavior="Flyout"
+       Shell.TabBarIsVisible="False"
        Shell.BackgroundColor="BlueViolet"
        Shell.ForegroundColor="Black"
        Title="InzynieriaAplikacja">
-
     <ShellContent Title="Login"
                   ContentTemplate="{DataTemplate local:LoginView}"
                   Route="Login"
-                  Shell.FlyoutItemIsVisible="False"/>
-
-    <ShellContent Title="Home"
-                  ContentTemplate="{DataTemplate local:MainView}"
-                  Route="Main"/>
-
-    <ShellContent Title="Training"
-                  ContentTemplate="{DataTemplate local:TrainingView}"
-                  Route="Training"
-                  Shell.FlyoutItemIsVisible="False"/>
+                  Shell.FlyoutItemIsVisible="False" />
 
     <ShellContent Title="AdminPage"
                   ContentTemplate="{DataTemplate local:AdminPanelView}"
-                  Route="Admin" 
-                  Shell.FlyoutItemIsVisible="False"/>
+                  Route="Admin"
+                  Shell.FlyoutItemIsVisible="False" />
 
     <ShellContent Title="AdminTrainingControlPage"
                   ContentTemplate="{DataTemplate local2:AdminControlTrainingView}"
                   Route="AdminTrainingControl"
                   Shell.FlyoutItemIsVisible="False" />
 
-
     <ShellContent Title="AdminUserControlPage"
                   ContentTemplate="{DataTemplate local2:AdminControlUserView}"
-                  Route="AdminUserControl" 
-                  Shell.FlyoutItemIsVisible="False"/>
+                  Route="AdminUserControl"
+                  Shell.FlyoutItemIsVisible="False" />
 
     <ShellContent Title="AdminMealControlPage"
                   ContentTemplate="{DataTemplate local2:AdminControlMealView}"
                   Route="AdminMealControl"
                   Shell.FlyoutItemIsVisible="False" />
 
-    <ShellContent Title="Profil"
-                  ContentTemplate="{DataTemplate local:UserProfileView}"
-                  Route="UserProfileView"/>
 
-    <Tab Title="Training Tab"
-         Route="TrainingTab"
-         FlyoutDisplayOptions="AsMultipleItems">
+    <FlyoutItem Title="WTF"
+                FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Home"
+                      ContentTemplate="{DataTemplate local:MainView}"
+                      Icon="home.svg"
+                      Route="Main" />
 
-        <ShellContent Title="Treningi"
-              ContentTemplate="{DataTemplate local:TrainingView}"
-              Route="Training"/>
+        <ShellContent Title="Profil"
+                      ContentTemplate="{DataTemplate local:UserProfileView}"
+                      Icon="user.svg"
+                      Route="UserProfileView" />
 
-        <ShellContent Title="Ukończone treningi"
-            ContentTemplate="{DataTemplate local:TrainingDoneView}"
-            Route="TrainingDone"/>
+        <Tab Title="Posiłki"
+             Icon="meals.svg"
+             Route="MealTab"
+             FlyoutDisplayOptions="AsSingleItem">
+            <ShellContent Title="Posiłki"
+                          ContentTemplate="{DataTemplate local:MealView}"
+                          Route="Meal" />
 
-    </Tab>
+            <ShellContent Title="Dodaj Posiłek"
+                          ContentTemplate="{DataTemplate local:UserAddMealView}"
+                          Route="AddMeal" />
+        </Tab>
 
-    <ShellContent Title="Aktywność"
-                  ContentTemplate="{DataTemplate local:ActivityView}"
-                  Route="Activity"/>
+        <Tab Title="Treningi"
+             Icon="training.svg"
+             Route="TrainingTab"
+             FlyoutDisplayOptions="AsSingleItem">
 
-    <ShellContent Title="Posiłki"
-                  ContentTemplate="{DataTemplate local:MealView}"
-                  Route="Meal"/>
+            <ShellContent Title="Treningi"
+                          ContentTemplate="{DataTemplate local:TrainingView}"
+                          Route="Training" />
+
+            <ShellContent Title="Ukończone treningi"
+                          ContentTemplate="{DataTemplate local:TrainingDoneView}"
+                          Route="TrainingDone" />
+
+        </Tab>
+
+        <ShellContent Title="Aktywność"
+                      Icon="activity.svg"
+                      ContentTemplate="{DataTemplate local:ActivityView}"
+                      Route="Activity" />
+
+    </FlyoutItem>
 
     <Shell.FlyoutFooter>
         <Grid>
             <Button Text="WYLOGUJ"
-                    Clicked="Button_Clicked">
-                
-            </Button>
+                    Clicked="Button_Clicked" />
         </Grid>
     </Shell.FlyoutFooter>
-
 </Shell>

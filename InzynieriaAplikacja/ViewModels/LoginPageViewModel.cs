@@ -21,8 +21,8 @@ public partial class LoginPageViewModel : BaseViewModel
         emailText = "user@example.com";
         passwordText = "user123";
 
-        //emailText = "admin";
-        //passwordText = "admin";
+        /*emailText = "admin";
+        passwordText = "admin";*/
 
         CreateAdmin();
     }
