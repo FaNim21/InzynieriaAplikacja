@@ -34,5 +34,5 @@ public class EatenMeal
     public int IdMeal { get; set; }
 
     [OneToOne(CascadeOperations = CascadeOperation.All)]
-    public Meal? Meal { get; set; } = new();
+    public Meal Meal { get; set; } = new();
 }

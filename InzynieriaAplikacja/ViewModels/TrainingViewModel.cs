@@ -10,10 +10,7 @@ public partial class TrainingViewModel: BaseViewModel
     private ObservableCollection<Training> trainings = [];
 
 
-    public TrainingViewModel()
-    {
-        
-    }
+    public TrainingViewModel() { }
 
     public override void OnAppearing()
     {
