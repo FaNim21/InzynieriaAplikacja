@@ -30,7 +30,7 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Meal">
                     <Grid Padding="10"
-                          BackgroundColor="#2196F3">
+                          BackgroundColor="PaleVioletRed">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="25" />
                             <RowDefinition Height="25" />
