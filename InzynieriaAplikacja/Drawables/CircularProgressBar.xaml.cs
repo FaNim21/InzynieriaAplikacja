@@ -53,6 +53,8 @@ public partial class CircularProgressBar : ContentView
     {
         base.OnPropertyChanged(propertyName);
 
+        InvalidateLayout();
+
         if (propertyName == SizeProperty.PropertyName)
         {
             HeightRequest = Size;

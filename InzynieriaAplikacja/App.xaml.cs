@@ -25,6 +25,13 @@ public partial class App : Application
         }
     }
 
+    private static Activity _currentActivity;
+    public static Activity CurrentActivity
+    {
+        get => _currentActivity;
+        set { _currentActivity = value; }
+    }
+
     public App()
     {
         InitializeComponent();

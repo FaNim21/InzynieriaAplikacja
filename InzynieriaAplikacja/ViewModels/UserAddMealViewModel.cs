@@ -35,7 +35,7 @@ public partial class UserAddMealViewModel : BaseViewModel
             };
             App.Database.CreateTable(meal);
 
-            await Application.Current!.MainPage!.DisplayAlert("Error", $"Dodano posiłek: {Name}", "OK");
+            await Application.Current!.MainPage!.DisplayAlert("Message", $"Dodano posiłek: {Name}", "OK");
             Clear();
         }
         catch (Exception ex)

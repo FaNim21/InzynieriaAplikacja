@@ -18,100 +18,70 @@
     </ContentPage.Background>
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <StackLayout Grid.Row="0">
-            <Label Text="Witaj użytkowniku!"
-                   HeightRequest="30"
-                   VerticalOptions="StartAndExpand"
-                   TextColor="GhostWhite"
-                   BackgroundColor="Black"
-                   HorizontalTextAlignment="Center"
-                   VerticalTextAlignment="Center"
-                   Margin="10" />
-        </StackLayout>
-
         <StackLayout Grid.Row="1"
                      HorizontalOptions="Center"
                      VerticalOptions="Center">
-            <Label
-                HorizontalOptions="CenterAndExpand">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span 
-                            Text="{Binding CurrentStep}"
-                            TextColor="Wheat"
-                            FontSize="30"/>
-                        <Span
-                            Text=" / "
-                            FontSize="25"/>
-                        <Span
-                            Text="{Binding MaxStep}"
-                            TextColor="Wheat"
-                            FontSize="25"/>
-                    </FormattedString>
-                </Label.FormattedText>
 
-            </Label>
-            <Label
-                HorizontalOptions="Center">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span
-                            Text="{Binding Distance}"
-                            TextColor="Wheat"
-                            FontSize="20"/>
-                        <Span
-                            Text=" km"
-                            TextColor="Wheat"
-                            FontSize="15"/>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-            <!--<ProgressBar ProgressColor="Green"
-                         Margin="10"
-                         WidthRequest="200"
-                         HeightRequest="60"
-                         ScaleY="10"
-                         Progress="{Binding Step}" 
-                         VerticalOptions="Center"
-                         HorizontalOptions="Center"/>-->
-            <drawable:CircularProgressBar Progress="{Binding Step}"
-                                          Size="300"
-                                          Thickness="20"
-                                          ProgressColor="DarkGreen"
-                                          ProgressLeftColor="Transparent"
-                                          TextColor="Wheat"
-                                          HorizontalOptions="Center"
-                                          VerticalOptions="Center"/>
-            <Label
-                HorizontalOptions="Center"
-                VerticalOptions="End">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span
-                            Text="Kalorie spalone: "
-                            TextColor="Green"
-                            FontSize="15"/>
-                        <Span
-                            Text="{Binding Calories}"
-                            TextColor="Green"
-                            FontSize="15"/>
-                        <Span
-                            Text=" kcal"
-                            TextColor="Green"
-                            FontSize="15"/>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-            <Button
-                Text="Wykonaj"
-                Command="{Binding MakeStepCommand}">
+            <Grid>
+                <StackLayout Margin="0,130,0,0">
+                    <Label HorizontalOptions="CenterAndExpand">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding CurrentStep}"
+                                      TextColor="Wheat"
+                                      FontSize="40" />
+                                <Span Text=" / "
+                                      FontSize="25" />
+                                <Span Text="{Binding MaxStep}"
+                                      TextColor="Wheat"
+                                      FontSize="35" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label HorizontalOptions="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Distance}"
+                                      TextColor="Wheat"
+                                      FontSize="25" />
+                                <Span Text=" km"
+                                      TextColor="Wheat"
+                                      FontSize="15" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
 
+                <drawable:CircularProgressBar Progress="{Binding Step}"
+                                              Size="350"
+                                              Thickness="40"
+                                              ProgressColor="DarkGreen"
+                                              ProgressLeftColor="Transparent"
+                                              TextColor="Wheat"
+                                              HorizontalOptions="Center"
+                                              VerticalOptions="Center" />
+            </Grid>
+
+            <Label HorizontalOptions="Center"
+                   VerticalOptions="End"
+                   Margin="15">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Kalorie spalone: "
+                              TextColor="Green"
+                              FontSize="15" />
+                        <Span Text="{Binding Calories}"
+                              TextColor="Green"
+                              FontSize="15" />
+                        <Span Text=" kcal"
+                              TextColor="Green"
+                              FontSize="15" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Button Text="Wykonaj"
+                    Command="{Binding MakeStepCommand}">
             </Button>
         </StackLayout>
     </Grid>

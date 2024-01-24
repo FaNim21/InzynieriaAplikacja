@@ -72,7 +72,6 @@
             <ShellContent Title="Ukończone treningi"
                           ContentTemplate="{DataTemplate local:TrainingDoneView}"
                           Route="TrainingDone" />
-
         </Tab>
 
         <ShellContent Title="Aktywność"

@@ -12,7 +12,7 @@ public partial class MainViewModel : BaseViewModel
     private IPedometer pedometer;
 
     [ObservableProperty]
-    private float step;
+    private int step;
 
     [ObservableProperty]
     private int currentStep;
@@ -48,12 +48,11 @@ public partial class MainViewModel : BaseViewModel
     public void MakeStep()
     {
         CurrentStep++;
-        Step = (float) CurrentStep / MaxStep;
     }
 
     partial void OnCurrentStepChanged(int value)
     {
-        Step = (float)value / MaxStep;
+        Step = (int)Math.Round(((float)value / MaxStep) * 100);
         Distance = (float)Math.Round((value * 0.7f) / 1000, 2);
         Calories = (int)Math.Round(value * 0.04f);
     }
@@ -63,13 +62,13 @@ public partial class MainViewModel : BaseViewModel
         pedometer.ReadingChanged += (sender, reading) =>
         {
             CurrentStep = reading.NumberOfSteps;
-            Step = (float)CurrentStep / MaxStep;
+            Step = CurrentStep / MaxStep;
         };
         try
         {
             pedometer.Start();
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Application.Current!.MainPage!.DisplayAlert("Error", ex.Message, ":(");
         }
