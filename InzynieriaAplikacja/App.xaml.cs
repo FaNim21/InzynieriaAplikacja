@@ -25,6 +25,13 @@ public partial class App : Application
         }
     }
 
+    private static Statistic _currentStatistics;
+    public static Statistic CurrentStatistics
+    {
+        get => _currentStatistics;
+        set { _currentStatistics = value; }
+    }
+
     private static Activity _currentActivity;
     public static Activity CurrentActivity
     {

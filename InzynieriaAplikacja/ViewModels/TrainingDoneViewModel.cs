@@ -1,19 +1,15 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using InzynieriaAplikacja.Models;
 using System.Collections.ObjectModel;
 
 namespace InzynieriaAplikacja.ViewModels;
 
-public partial class TrainingDoneViewModel: BaseViewModel
+public partial class TrainingDoneViewModel : BaseViewModel
 {
     [ObservableProperty]
-    private ObservableCollection<FinishedTraining> trainingsDone = [];
+    private ObservableCollection<Training> trainingsDone = [];
 
-    public TrainingDoneViewModel()
-    {
-        
-    }
+    public TrainingDoneViewModel() { }
 
     public override void OnAppearing()
     {
@@ -25,7 +21,14 @@ public partial class TrainingDoneViewModel: BaseViewModel
         try
         {
             TrainingsDone.Clear();
-            TrainingsDone = new(App.Database.GetTable<FinishedTraining>());
+
+            var finishedTrainings = App.Database.GetTable<FinishedTraining>().Where(x => x.IdUser == App.CurrentUser.Id);
+            foreach (var finishedTraining in finishedTrainings)
+            {
+                Training? training = App.Database.GetTable<Training>().Where(x => x.Id == finishedTraining.IdTraining).FirstOrDefault();
+                if (training == null) continue;
+                TrainingsDone.Add(training);
+            }
         }
         catch (Exception ex)
         {

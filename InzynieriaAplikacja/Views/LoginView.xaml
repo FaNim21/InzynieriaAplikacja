@@ -49,7 +49,7 @@
                     TextColor="#EEE"
                     Command="{Binding CreateAccountCommand}" />
 
-            <Label Text="v0.2" 
+            <Label Text="v0.5" 
                    TextColor="White"/>
 
         </VerticalStackLayout>

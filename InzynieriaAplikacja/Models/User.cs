@@ -22,9 +22,6 @@ public class User
 
     [ForeignKey(typeof(Statistic))]
     public int IdStatistic { get; set; }
-
-    [OneToOne(CascadeOperations = CascadeOperation.All)]
-    public Statistic? Statistic { get; set; } = new();
 }
 
 [Table("statistic")]
@@ -32,7 +29,10 @@ public class Statistic
 {
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
-    public float? SpozyteKalorie { get; set; }
+    public int WykonaneKroki { get; set; }
+    public float CalkowiciePrzebytyDystans { get; set; }
+    public int LaczneSpaloneKalorie { get; set; }
+    public float SpozyteKalorie { get; set; }
     public string? WykonaneTreningi { get; set; }
 }
 
@@ -42,9 +42,10 @@ public class Activity
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
 
-    public DateTime? Data { get; set; }
-    public int? Kroki { get; set; }
-    public float SpaloneKalorie { get; set; }
+    //DateTime asdasd = Convert.ToDateTime(today); zamiana daty na string
+    public DateTime Date { get; set; }
+    public int Kroki { get; set; }
+    public int SpaloneKalorie { get; set; }
     public float PokonanyDystans { get; set; }
     public string? AktywnosciDodatkowe { get; set; }
 

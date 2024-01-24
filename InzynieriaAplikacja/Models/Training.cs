@@ -26,13 +26,6 @@ public class FinishedTraining
     [ForeignKey(typeof(User))]
     public int IdUser { get; set; }
 
-    [OneToOne(CascadeOperations = CascadeOperation.All)]
-    public User User { get; set; } = new();
-
-
     [ForeignKey(typeof(Training))]
     public int IdTraining { get; set; }
-
-    [OneToOne(CascadeOperations = CascadeOperation.All)]
-    public Training? Training { get; set; } = new();
 }

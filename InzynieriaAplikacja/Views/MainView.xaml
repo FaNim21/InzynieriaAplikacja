@@ -18,12 +18,14 @@
     </ContentPage.Background>
 
     <Grid>
+        <Ellipse Fill="DarkOliveGreen"
+                 WidthRequest="271"
+                 HeightRequest="271" />
         <StackLayout Grid.Row="1"
                      HorizontalOptions="Center"
                      VerticalOptions="Center">
-
             <Grid>
-                <StackLayout Margin="0,130,0,0">
+                <StackLayout Margin="0,180,0,0">
                     <Label HorizontalOptions="CenterAndExpand">
                         <Label.FormattedText>
                             <FormattedString>
@@ -51,7 +53,6 @@
                         </Label.FormattedText>
                     </Label>
                 </StackLayout>
-
                 <drawable:CircularProgressBar Progress="{Binding Step}"
                                               Size="350"
                                               Thickness="40"
@@ -59,7 +60,9 @@
                                               ProgressLeftColor="Transparent"
                                               TextColor="Wheat"
                                               HorizontalOptions="Center"
-                                              VerticalOptions="Center" />
+                                              VerticalOptions="Center"
+                                              Margin="0,50,0,0" />
+
             </Grid>
 
             <Label HorizontalOptions="Center"
@@ -79,10 +82,6 @@
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-
-            <Button Text="Wykonaj"
-                    Command="{Binding MakeStepCommand}">
-            </Button>
         </StackLayout>
     </Grid>
 </ContentPage>

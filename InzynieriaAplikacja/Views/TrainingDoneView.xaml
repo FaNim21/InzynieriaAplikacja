@@ -24,7 +24,7 @@
             </CollectionView.ItemsLayout>
 
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:FinishedTraining">
+                <DataTemplate x:DataType="models:Training">
                     <Grid Padding="10"
                           BackgroundColor="PaleVioletRed">
                         <Grid.RowDefinitions>
@@ -33,7 +33,7 @@
                             <RowDefinition Height="40" />
                         </Grid.RowDefinitions>
 
-                        <Label Text="{Binding Training.Name}"
+                        <Label Text="{Binding Name}"
                                FontSize="18"
                                TextColor="White"
                                Grid.Row="0" />

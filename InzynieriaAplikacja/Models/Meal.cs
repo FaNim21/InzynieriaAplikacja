@@ -26,13 +26,6 @@ public class EatenMeal
     [ForeignKey(typeof(User))]
     public int IdUser { get; set; }
 
-    [OneToOne(CascadeOperations = CascadeOperation.All)]
-    public User User { get; set; } = new();
-
-
     [ForeignKey(typeof(Meal))]
     public int IdMeal { get; set; }
-
-    [OneToOne(CascadeOperations = CascadeOperation.All)]
-    public Meal Meal { get; set; } = new();
 }

@@ -2,8 +2,9 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="InzynieriaAplikacja.Views.ActivityView"
-             xmlns:vm="clr-namespace:InzynieriaAplikacja.ViewModels"
-             x:DataType="vm:ActivityViewModel"
+             xmlns:viewmodel="clr-namespace:InzynieriaAplikacja.ViewModels"
+             xmlns:models="clr-namespace:InzynieriaAplikacja.Models"
+             x:DataType="viewmodel:ActivityViewModel"
              Title="">
     <ContentPage.Background>
         <LinearGradientBrush StartPoint="1.5,2"
@@ -15,6 +16,163 @@
         </LinearGradientBrush>
     </ContentPage.Background>
     <StackLayout>
-        
+        <Label Text="Obecna Aktywność: "
+               TextColor="Wheat"
+               FontSize="24"
+               Margin="15" />
+
+        <CollectionView ItemsSource="{Binding CurrentActivity}"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="StartAndExpand">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                                   SnapPointsType="MandatorySingle"
+                                   SnapPointsAlignment="Start"
+                                   ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Activity">
+                    <Grid Padding="10"
+                          BackgroundColor="PaleVioletRed">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+
+                        <StackLayout>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Data: "
+                                              FontSize="18"
+                                              TextColor="White" />
+                                        <Span Text="{Binding Date}"
+                                              FontSize="18"
+                                              TextColor="White" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Kroki: "
+                                              FontSize="18"
+                                              TextColor="White" />
+                                        <Span Text="{Binding Kroki}"
+                                              FontSize="18"
+                                              TextColor="White" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Spalone kalorie: "
+                                              FontSize="18"
+                                              TextColor="White" />
+                                        <Span Text="{Binding SpaloneKalorie}"
+                                              FontSize="18"
+                                              TextColor="White" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Pokonany dystans: "
+                                              FontSize="18"
+                                              TextColor="White" />
+                                        <Span Text="{Binding PokonanyDystans}"
+                                              FontSize="18"
+                                              TextColor="White" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Label Text="Reszta Aktywności: "
+               TextColor="Wheat"
+               FontSize="24"
+               Margin="15,0,0,00" />
+        <CollectionView ItemsSource="{Binding Activities}"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="StartAndExpand">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                                   SnapPointsType="MandatorySingle"
+                                   SnapPointsAlignment="Start"
+                                   ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Activity">
+                    <Grid Padding="10"
+                          BackgroundColor="PaleVioletRed">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+
+                        <StackLayout>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Data: "
+                                              FontSize="18"
+                                              TextColor="White" />
+                                        <Span Text="{Binding Date}"
+                                              FontSize="18"
+                                              TextColor="White" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Kroki: "
+                                              FontSize="18"
+                                              TextColor="White" />
+                                        <Span Text="{Binding Kroki}"
+                                              FontSize="18"
+                                              TextColor="White" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Spalone kalorie: "
+                                              FontSize="18"
+                                              TextColor="White" />
+                                        <Span Text="{Binding SpaloneKalorie}"
+                                              FontSize="18"
+                                              TextColor="White" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Pokonany dystans: "
+                                              FontSize="18"
+                                              TextColor="White" />
+                                        <Span Text="{Binding PokonanyDystans}"
+                                              FontSize="18"
+                                              TextColor="White" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </StackLayout>
 </ContentPage>

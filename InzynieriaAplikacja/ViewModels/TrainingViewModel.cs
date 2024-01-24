@@ -38,8 +38,8 @@ public partial class TrainingViewModel: BaseViewModel
         {
             var finishedTraining = new FinishedTraining
             {
-                User = App.CurrentUser,
-                Training = selectedTraining
+                IdUser = App.CurrentUser.Id,
+                IdTraining = selectedTraining.Id
             };
             App.Database.CreateTable(finishedTraining);
             await Application.Current!.MainPage!.DisplayAlert("Info", "Trening dodany do ukończonych.", "OK");

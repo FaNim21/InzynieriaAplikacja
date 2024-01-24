@@ -1,14 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using InzynieriaAplikacja.Context;
-using InzynieriaAplikacja.Controls;
 using InzynieriaAplikacja.Models;
-using System.Diagnostics;
 
 namespace InzynieriaAplikacja.ViewModels;
 
 public partial class LoginPageViewModel : BaseViewModel
 {
+    private MainViewModel mainViewModel;
+
     [ObservableProperty]
     private string emailText;
 
@@ -16,13 +15,15 @@ public partial class LoginPageViewModel : BaseViewModel
     private string passwordText;
 
 
-    public LoginPageViewModel()
+    public LoginPageViewModel(MainViewModel mainViewModel)
     {
-        emailText = "user@example.com";
-        passwordText = "user123";
+        this.mainViewModel = mainViewModel;
 
-        /*emailText = "admin";
-        passwordText = "admin";*/
+        /*emailText = "user@example.com";
+        passwordText = "user123";*/
+
+        emailText = "admin";
+        passwordText = "admin";
 
         CreateAdmin();
     }
@@ -42,7 +43,7 @@ public partial class LoginPageViewModel : BaseViewModel
         IsBusy = true;
         try
         {
-            App.Database.CreateUser(new User() { Email = EmailText, Password = PasswordText });
+            App.Database.CreateUser(new User() { Email = EmailText, Password = PasswordText, CelKrokow = 1000 });
             await Application.Current!.MainPage!.DisplayAlert("Message", $"Dodano konto użytkownika {EmailText}", "Ok");
         }
         catch (Exception ex)
@@ -67,9 +68,21 @@ public partial class LoginPageViewModel : BaseViewModel
             }
             else
             {
-                user.Statistic ??= new() { SpozyteKalorie = 124421 };
-
+                Statistic statistic;
+                if (user.IdStatistic == 0)
+                {
+                    statistic = new() { };
+                    App.Database.CreateTable(statistic);
+                    user.IdStatistic = statistic.Id;
+                    App.Database.UpdateTable(user);
+                }
+                else
+                {
+                    statistic = App.Database.GetTable<Statistic>().Where(x => x.Id == user.IdStatistic).First()!;
+                }
+                App.CurrentStatistics = statistic!;
                 App.CurrentUser = user;
+                mainViewModel.OnLoad();
                 await Shell.Current.GoToAsync("///Main");
                 Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
             }

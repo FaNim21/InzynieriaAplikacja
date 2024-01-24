@@ -2,7 +2,6 @@
 using CommunityToolkit.Mvvm.Input;
 using InzynieriaAplikacja.Models;
 using Plugin.Maui.Pedometer;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 
 namespace InzynieriaAplikacja.ViewModels;
@@ -29,8 +28,38 @@ public partial class MainViewModel : BaseViewModel
     public MainViewModel(IPedometer pedometer)
     {
         this.pedometer = pedometer;
-        maxStep = App.CurrentUser.CelKrokow;
+    }
+
+    public void OnLoad()
+    {
+        Step = 0;
+        CurrentStep = 0;
+        Distance = 0;
+        Calories = 0;
+        MaxStep = App.CurrentUser.CelKrokow;
         StartCounting();
+
+        try
+        {
+            DateTime today = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
+            Models.Activity? todayActivity = App.Database.GetTable<Models.Activity>().Where(x => x.StatisticId == App.CurrentStatistics.Id && x.Date == today).FirstOrDefault();
+            if (todayActivity == null)
+            {
+                todayActivity = new() { Date = today, StatisticId = App.CurrentStatistics.Id };
+                App.Database.CreateTable(todayActivity);
+            }
+            else
+            {
+                CurrentStep = todayActivity.Kroki;
+                Distance = todayActivity.PokonanyDystans;
+                Calories = todayActivity.SpaloneKalorie;
+            }
+            App.CurrentActivity = todayActivity;
+        }
+        catch (Exception ex)
+        {
+            Application.Current!.MainPage!.DisplayAlert("Message", $"{ex.Message}", "Ok");
+        }
     }
 
     public override void OnAppearing()
@@ -44,10 +73,14 @@ public partial class MainViewModel : BaseViewModel
         }
     }
 
-    [RelayCommand]
-    public void MakeStep()
+    public override void OnDisappearing()
     {
-        CurrentStep++;
+        base.OnDisappearing();
+
+        App.CurrentActivity.Kroki = CurrentStep;
+        App.CurrentActivity.PokonanyDystans = Distance;
+        App.CurrentActivity.SpaloneKalorie = Calories;
+        App.Database.UpdateTable(App.CurrentActivity);
     }
 
     partial void OnCurrentStepChanged(int value)
