@@ -6,20 +6,24 @@
              xmlns:models="clr-namespace:InzynieriaAplikacja.Models"
              x:DataType="viewmodel:AdminControlUserViewModel"
              Title="">
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="1.5,1"
+                     EndPoint="0,0">
+            <GradientStop Color="#525252"
+                  Offset="0.0" />
+            <GradientStop Color="#212121"
+                  Offset="1.0" />
+            <GradientStop Color="#525252"
+                  Offset="0.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
     <StackLayout>
         <Label Text="Panel kontroli Użytkownika"
                FontSize="28"
                VerticalOptions="Center"
                HorizontalOptions="Center" 
-               Margin="15"/>
-
-        <Button Text="Powrót"
-                WidthRequest="100"
-                HeightRequest="60"
-                VerticalOptions="End"
-                BackgroundColor="#b23b3b"
-                Margin="15"
-                Command="{Binding GoBackCommand}" />
+               TextColor="LightGray"
+               Margin="10,30,10,30"/>
 
         <CollectionView ItemsSource="{Binding Users}"
                         HorizontalOptions="CenterAndExpand"
@@ -34,7 +38,7 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:User">
                     <Grid Padding="10"
-                          BackgroundColor="#2196F3">
+                          BackgroundColor="#919191">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="25" />
                             <RowDefinition Height="25" />
@@ -54,14 +58,23 @@
                                      Grid.Row="2">
                             <Button Text="Edit"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AdminControlUserViewModel}}, Path=EditCommand}"
-                                    CommandParameter="{Binding .}" />
+                                    CommandParameter="{Binding .}" 
+                                    BackgroundColor="#1a4091"/>
                             <Button Text="Delete"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AdminControlUserViewModel}}, Path=DeleteCommand}"
-                                    CommandParameter="{Binding .}" />
+                                    CommandParameter="{Binding .}" 
+                                    BackgroundColor="#b23b3b"/>
                         </StackLayout>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        <Button Text="Powrót"
+                WidthRequest="100"
+                HeightRequest="60"
+                VerticalOptions="End"
+                BackgroundColor="#b23b3b"
+                Margin="15"
+                Command="{Binding GoBackCommand}" />
     </StackLayout>
 </ContentPage>

@@ -38,6 +38,10 @@ public partial class MainViewModel : BaseViewModel
         base.OnAppearing();
 
         MaxStep = App.CurrentUser.CelKrokow;
+        if (string.IsNullOrEmpty(App.CurrentUser.Nazwisko) || App.CurrentUser.Wzrost == 0 || App.CurrentUser.CelKrokow == 0 || App.CurrentUser.Waga == 0 || string.IsNullOrEmpty(App.CurrentUser.Imie) || App.CurrentUser.RokUrodzenia == 0)
+        {
+            Application.Current!.MainPage!.DisplayAlert("Message", "Uzupełnij dane profilowe w zakładce Profil!", "Ok");
+        }
     }
 
     [RelayCommand]
@@ -67,7 +71,7 @@ public partial class MainViewModel : BaseViewModel
         }
         catch(Exception ex)
         {
-            Application.Current.MainPage.DisplayAlert("Error", ex.Message, ":(");
+            Application.Current!.MainPage!.DisplayAlert("Error", ex.Message, ":(");
         }
     }
 }

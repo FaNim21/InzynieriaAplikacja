@@ -6,17 +6,30 @@
              xmlns:models="clr-namespace:InzynieriaAplikacja.Models"
              x:DataType="viewmodel:AdminPanelViewModel"
              Title="">
-    <VerticalStackLayout>
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="1.5,1"
+                         EndPoint="0,0">
+            <GradientStop Color="#525252"
+                      Offset="0.0" />
+            <GradientStop Color="#212121"
+                      Offset="1.0" />
+            <GradientStop Color="#525252"
+                      Offset="0.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    <StackLayout>
         <Label Text="WITAMY W PANELU ADMINA"
                FontSize="28"
                VerticalOptions="Center"
-               HorizontalOptions="Center" />
+               HorizontalOptions="Center" 
+               TextColor="LightGray"
+               Margin="10,30,10,30"/>
 
         <Button Text="Użytkownicy"
                 WidthRequest="120"
                 HeightRequest="60"
                 VerticalOptions="End"
-                BackgroundColor="#b23b3b"
+                BackgroundColor="#615555"
                 Margin="15"
                 Command="{Binding OpenUserControlCommand}" />
 
@@ -24,7 +37,7 @@
                 WidthRequest="120"
                 HeightRequest="60"
                 VerticalOptions="End"
-                BackgroundColor="#b23b3b"
+                BackgroundColor="#615555"
                 Margin="15"
                 Command="{Binding OpenTrainingControlCommand}" />
 
@@ -32,16 +45,16 @@
                 WidthRequest="120"
                 HeightRequest="60"
                 VerticalOptions="End"
-                BackgroundColor="#b23b3b"
+                BackgroundColor="#615555"
                 Margin="15"
                 Command="{Binding OpenMealControlCommand}" />
 
         <Button Text="Wyloguj"
                 WidthRequest="100"
                 HeightRequest="60"
-                VerticalOptions="End"
+                VerticalOptions="EndAndExpand"
                 BackgroundColor="#b23b3b"
                 Margin="15"
                 Command="{Binding SignOutCommand}" />
-    </VerticalStackLayout>
+    </StackLayout>
 </ContentPage>
