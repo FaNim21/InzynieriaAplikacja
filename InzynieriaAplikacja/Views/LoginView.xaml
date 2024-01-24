@@ -7,10 +7,30 @@
              Shell.NavBarIsVisible="false"
              Shell.FlyoutItemIsVisible="False"
              Title="Login Page">
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="1.5,2"
+                         EndPoint="0,2">
+            <GradientStop Color="#660a0a"
+                      Offset="0.0" />
+            <GradientStop Color="#280645"
+                      Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    
     <ScrollView>
         <VerticalStackLayout Spacing="25"
                              Padding="30, 0"
                              VerticalOptions="Center">
+            <Frame Padding="12, 5"
+                   VerticalOptions="Start"
+                   BackgroundColor="Transparent"
+                   BorderColor="Transparent">
+                <Entry Text="Logowanie"
+                       TextColor="White"
+                       HorizontalOptions="Center"
+                       FontSize="30"
+                       FontFamily="Times New Roman"/>
+            </Frame>
             <Frame Padding="12, 5">
                 <Entry Placeholder="Email"
                        Text="{Binding EmailText}"
@@ -29,7 +49,8 @@
                     TextColor="#EEE"
                     Command="{Binding CreateAccountCommand}" />
 
-            <Label Text="v0.2" />
+            <Label Text="v0.2" 
+                   TextColor="White"/>
 
         </VerticalStackLayout>
     </ScrollView>

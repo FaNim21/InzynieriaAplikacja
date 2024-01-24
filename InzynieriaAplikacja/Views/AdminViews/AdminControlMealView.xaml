@@ -5,13 +5,25 @@
              xmlns:viewmodel="clr-namespace:InzynieriaAplikacja.ViewModels.Administrator"
              xmlns:models="clr-namespace:InzynieriaAplikacja.Models"
              x:DataType="viewmodel:AdminControlMealViewModel"
-             Title="AdminControlMealView">
+             Title="">
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="1.5,1"
+                     EndPoint="0,0">
+            <GradientStop Color="#525252"
+                  Offset="0.0" />
+            <GradientStop Color="#212121"
+                  Offset="1.0" />
+            <GradientStop Color="#525252"
+                  Offset="0.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
     <StackLayout>
-        <Label Text="Panel kontroli Traningów"
+        <Label Text="Panel kontroli Posiłków"
                FontSize="28"
                VerticalOptions="Center"
-               HorizontalOptions="Center"
-               Margin="15" />
+               HorizontalOptions="Center" 
+               TextColor="LightGray"
+               Margin="10,30,10,30"/>
 
         <HorizontalStackLayout Margin="15"
                                HorizontalOptions="Center">
@@ -19,15 +31,9 @@
                     WidthRequest="100"
                     HeightRequest="60"
                     VerticalOptions="End"
-                    BackgroundColor="#b23b3b"
+                    BackgroundColor="#615555"
                     Command="{Binding AddNewMealCommand}" />
-
-            <Button Text="Powrót"
-                    WidthRequest="100"
-                    HeightRequest="60"
-                    VerticalOptions="End"
-                    BackgroundColor="#b23b3b"
-                    Command="{Binding GoBackCommand}" />
+            
         </HorizontalStackLayout>
 
         <CollectionView ItemsSource="{Binding Meals}"
@@ -43,7 +49,7 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Meal">
                     <Grid Padding="10"
-                          BackgroundColor="#2196F3">
+                          BackgroundColor="#919191">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="25" />
                             <RowDefinition Height="25" />
@@ -63,14 +69,23 @@
                                      Grid.Row="2">
                             <Button Text="Edit"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AdminControlMealViewModel}}, Path=EditCommand}"
-                                    CommandParameter="{Binding .}" />
+                                    CommandParameter="{Binding .}" 
+                                    BackgroundColor="#1a4091"/>
                             <Button Text="Delete"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AdminControlMealViewModel}}, Path=DeleteCommand}"
-                                    CommandParameter="{Binding .}" />
+                                    CommandParameter="{Binding .}" 
+                                    BackgroundColor="#b23b3b"/>
                         </StackLayout>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        <Button Text="Powrót"
+                WidthRequest="100"
+                HeightRequest="60"
+                VerticalOptions="End"
+                BackgroundColor="#b23b3b"
+                Margin="10,10,10,20"
+                Command="{Binding GoBackCommand}" />
     </StackLayout>
 </ContentPage>
