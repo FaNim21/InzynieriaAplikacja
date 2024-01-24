@@ -16,7 +16,7 @@ public class Training
     public string Cwiczenia { get; set; }
 }
 
-[Table("skonczony_posilek")]
+[Table("skonczony_trening")]
 public class FinishedTraining
 {
     [PrimaryKey, AutoIncrement]
@@ -30,9 +30,9 @@ public class FinishedTraining
     public User User { get; set; } = new();
 
 
-    [ForeignKey(typeof(Meal))]
+    [ForeignKey(typeof(Training))]
     public int IdTraining { get; set; }
 
     [OneToOne(CascadeOperations = CascadeOperation.All)]
-    public Meal? Training { get; set; } = new();
+    public Training? Training { get; set; } = new();
 }
