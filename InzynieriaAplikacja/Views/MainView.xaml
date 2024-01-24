@@ -53,6 +53,7 @@
                         </Label.FormattedText>
                     </Label>
                 </StackLayout>
+                
                 <drawable:CircularProgressBar Progress="{Binding Step}"
                                               Size="350"
                                               Thickness="40"
@@ -62,7 +63,6 @@
                                               HorizontalOptions="Center"
                                               VerticalOptions="Center"
                                               Margin="0,50,0,0" />
-
             </Grid>
 
             <Label HorizontalOptions="Center"

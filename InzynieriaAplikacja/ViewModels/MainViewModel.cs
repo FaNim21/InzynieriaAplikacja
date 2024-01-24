@@ -88,6 +88,11 @@ public partial class MainViewModel : BaseViewModel
         Step = (int)Math.Round(((float)value / MaxStep) * 100);
         Distance = (float)Math.Round((value * 0.7f) / 1000, 2);
         Calories = (int)Math.Round(value * 0.04f);
+
+        App.CurrentActivity.Kroki = CurrentStep;
+        App.CurrentActivity.PokonanyDystans = Distance;
+        App.CurrentActivity.SpaloneKalorie = Calories;
+        App.Database.UpdateTable(App.CurrentActivity);
     }
 
     public void StartCounting()
@@ -95,7 +100,6 @@ public partial class MainViewModel : BaseViewModel
         pedometer.ReadingChanged += (sender, reading) =>
         {
             CurrentStep = reading.NumberOfSteps;
-            Step = CurrentStep / MaxStep;
         };
         try
         {
