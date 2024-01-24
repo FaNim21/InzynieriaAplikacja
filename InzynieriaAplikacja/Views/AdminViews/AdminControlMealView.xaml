@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InzynieriaAplikacja.Views.AdminViews.AdminControlMealView"
+             xmlns:viewmodel="clr-namespace:InzynieriaAplikacja.ViewModels.Administrator"
+             xmlns:models="clr-namespace:InzynieriaAplikacja.Models"
+             x:DataType="viewmodel:AdminControlMealViewModel"
+             Title="AdminControlMealView">
+    <StackLayout>
+        <Label Text="Panel kontroli Traningów"
+               FontSize="28"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"
+               Margin="15" />
+
+        <HorizontalStackLayout Margin="15"
+                               HorizontalOptions="Center">
+            <Button Text="Dodaj Trening"
+                    WidthRequest="100"
+                    HeightRequest="60"
+                    VerticalOptions="End"
+                    BackgroundColor="#b23b3b"
+                    Command="{Binding AddNewMealCommand}" />
+
+            <Button Text="Powrót"
+                    WidthRequest="100"
+                    HeightRequest="60"
+                    VerticalOptions="End"
+                    BackgroundColor="#b23b3b"
+                    Command="{Binding GoBackCommand}" />
+        </HorizontalStackLayout>
+
+        <CollectionView ItemsSource="{Binding Meals}"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="StartAndExpand">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                                   SnapPointsType="MandatorySingle"
+                                   SnapPointsAlignment="Start"
+                                   ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Meal">
+                    <Grid Padding="10"
+                          BackgroundColor="#2196F3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+
+                        <Label Text="{Binding Name}"
+                               FontSize="18"
+                               TextColor="White"
+                               Grid.Row="0" />
+                        <Label Text="{Binding Kalorycznosc}"
+                               FontSize="14"
+                               TextColor="White"
+                               Grid.Row="1" />
+
+                        <StackLayout Orientation="Horizontal"
+                                     Grid.Row="2">
+                            <Button Text="Edit"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AdminControlMealViewModel}}, Path=EditCommand}"
+                                    CommandParameter="{Binding .}" />
+                            <Button Text="Delete"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AdminControlMealViewModel}}, Path=DeleteCommand}"
+                                    CommandParameter="{Binding .}" />
+                        </StackLayout>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

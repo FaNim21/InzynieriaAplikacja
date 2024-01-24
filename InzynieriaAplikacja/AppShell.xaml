@@ -39,6 +39,11 @@
                   Route="AdminUserControl" 
                   Shell.FlyoutItemIsVisible="False"/>
 
+    <ShellContent Title="AdminMealControlPage"
+                  ContentTemplate="{DataTemplate local2:AdminControlMealView}"
+                  Route="AdminMealControl"
+                  Shell.FlyoutItemIsVisible="False" />
+
     <ShellContent Title="Profil"
                   ContentTemplate="{DataTemplate local:UserProfileView}"
                   Route="UserProfileView"/>

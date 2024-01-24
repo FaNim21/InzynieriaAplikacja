@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InzynieriaAplikacja.Controls.EditMealPage"
+             Title="EdotMealPage">
+    <StackLayout Margin="10">
+        <Label Text="Nazwa:" />
+        <Entry x:Name="NameEntry" />
+
+        <Label Text="Kaloryczność:" />
+        <Entry x:Name="CaloriesEntry" />
+
+        <Label Text="Białko:" />
+        <Entry x:Name="BialoEntry" />
+
+        <Label Text="Tłuszcze:" />
+        <Entry x:Name="TluszczeEntry" />
+
+        <Label Text="Węglowodany:" />
+        <Entry x:Name="WegloEntry" />
+
+        <Button Text="Save"
+                Clicked="SaveButton_Clicked" />
+    </StackLayout>
+</ContentPage>

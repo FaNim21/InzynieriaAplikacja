@@ -1,7 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using InzynieriaAplikacja.Controls;
-using InzynieriaAplikacja.Models;
+﻿using CommunityToolkit.Mvvm.Input;
 
 namespace InzynieriaAplikacja.ViewModels.Administrator;
 
@@ -34,6 +31,21 @@ public partial class AdminPanelViewModel : BaseViewModel
         try
         {
             await Shell.Current.GoToAsync("///AdminTrainingControl");
+        }
+        catch (Exception ex)
+        {
+            await Application.Current!.MainPage!.DisplayAlert("no i zepsoles", $"blad w wylogowywaniu {ex.Message}", "no dobra");
+        }
+        IsBusy = false;
+    }
+
+    [RelayCommand]
+    public async Task OpenMealControl()
+    {
+        IsBusy = true;
+        try
+        {
+            await Shell.Current.GoToAsync("///AdminMealControl");
         }
         catch (Exception ex)
         {

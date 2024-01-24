@@ -71,6 +71,9 @@
 	  <Compile Update="Controls\EditUserPage.xaml.cs">
 	    <DependentUpon>EditUserPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Controls\EditMealPage.xaml.cs">
+	    <DependentUpon>EditMealPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Controls\Flyout.xaml.cs">
 	    <DependentUpon>Flyout.xaml</DependentUpon>
 	  </Compile>
@@ -86,6 +89,9 @@
 	  <MauiXaml Update="Controls\EditUserPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Controls\EditMealPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Controls\Flyout.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -96,6 +102,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\AdminPanelView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AdminViews\AdminControlMealView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\AdminViews\AdminControlTrainingView.xaml">

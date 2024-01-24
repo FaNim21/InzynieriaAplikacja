@@ -10,10 +10,10 @@ public class Meal
     [AutoIncrement]
     public int Id { get; set; }
     public string Name { get; set; }
+    public float Kalorycznosc { get; set; }
     public float Bialko { get; set; }
     public float Tluszcze { get; set; }
     public float Weglowodany { get; set; }
-    public float Kaloryczność { get; set; }
 }
 
 [Table("zjedzony_posilek")]
